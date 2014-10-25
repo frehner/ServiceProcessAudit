@@ -3,179 +3,14 @@
 <head>
 	<title>Service Process Audit Assist
 	</title>
-	<style>
-
-
-
-	</style>
-
-
-
-
-	<!--
-	
-		Each step has own unique generated name for classifications
-
-
-
-
-	-->
-
-
-
-
-
+	<link rel="stylesheet" href="index.css" media="screen" title="no title" charset="utf-8">
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular.min.js"></script>
 </head>
 <body>
 	<div class='pageWrapper'>
 		<div class='tabHeader'>
 		</div>
 		<div class='contentWrapper'>
-
-
-			<style>
-
-				body {
-					margin: 0;
-					background-color: #ababab;
-					font-family: Segoe UI;
-				}
-				.pageWrapper {
-
-				}
-				.tabHeader {
-					background-color: #393939;
-					height: 49px;
-				}
-				.contentWrapper {
-					background-color: #ababab;
-					padding: 6px;
-				}
-
-				form.stepTabBody {
-
-				}
-				fieldset.step {
-					border: none;
-					background-color: #878787;
-					padding: 12px;
-					padding-bottom: 6px;
-					margin: 12px;
-					min-height: 26px;
-					box-shadow: 2px 2px 4px #676767;
-				}
-				fieldset.step:hover{
-					/*background-color: #6C6C6C;*/
-					cursor: pointer;
-				}
-				fieldset.step:active{
-					background-color: #7C7C7C;
-					cursor: pointer;
-					box-shadow: 2px 2px 2px #676767;
-				}
-				span.stepNumber {
-					float:left;
-					color: white;
-					margin-right:6px;
-					margin-top:3px;
-					font-size:90%;
-				}
-				div.stepDescription {
-					float: left;
-					margin-right: 4px;
-					padding:2px;
-				}
-
-				input[type='textbox'].stepDescription {
-					border:none;
-					border-bottom: 1px solid #c7c7c7;
-					background-color: #878787;
-					color: white;
-					min-width: 200px;
-				}
-
-				/* http://stackoverflow.com/a/9705712/1963978 */
-				input.stepDescription::-webkit-input-placeholder {
-				    color: #c7c7c7;
-				}
-				input.stepDescription:-moz-placeholder {
-				    /* FF 4-18 */
-				    color: #c7c7c7;
-				}
-				input.stepDescription::-moz-placeholder {
-				    /* FF 19+ */
-				    color: #c7c7c7;
-				}
-				input.stepDescription:-ms-input-placeholder {
-				    /* IE 10+ */
-				    color: #c7c7c7;
-				}
-
-
-				.inputRegion {
-					float: left;
-					color: white;
-				    -webkit-touch-callout: none;
-				    -webkit-user-select: none;
-				    -khtml-user-select: none;
-				    -moz-user-select: none;
-				    -ms-user-select: none;
-				    user-select: none;
-				    
-				    border: 1px solid #9f9f9f;
-				    margin: -2px 2px 2px 2px;
-				    padding: 3px;
-				}
-
-
-				.stepControlRegionWrapper {
-				}
-				input[name='stepControlRegion']{
-				}
-
-				.stepTypeWrapper {
-				}
-				input[name='stepType']{
-				}
-
-
-
-				.stepClearButton {
-					float:left;
-					background: none;
-					color:white;
-					border:none;
-					padding-right:5px;
-					padding-left:3px;
-					margin-top:-3px;
-					margin-right:13px;
-					margin-left:7px;
-					font-size:115%;
-					font-weight: bold;
-					transition: all 120ms;
-
-					-webkit-touch-callout: none;
-				    -webkit-user-select: none;
-				    -khtml-user-select: none;
-				    -moz-user-select: none;
-				    -ms-user-select: none;
-				    user-select: none;
-				}
-				.stepClearButton:hover {
-					cursor:pointer;
-					color: #cd2222 !important;
-				}
-				.stepClearButton:active {
-					cursor:pointer;
-					color: #8d2222 !important;
-				}
-
-
-				.floatEnder {
-					clear: both;
-				}
-			</style>
-
 			<div class='stepTabBody'>
 				<form class='stepTabForm'>
 					<fieldset class='step'>
@@ -189,9 +24,9 @@
 						<fieldset class='stepControlRegionWrapper inputRegion'>
 							<input name='stepControlRegion' type='radio' value='ProvInd'/>Prov Ind
 							<input name='stepControlRegion' type='radio' value='ProvSur'/>Prov Surr
-							<input name='stepControlRegion' type='radio' value='ProvDir'/>Prov Direct 
-							<input name='stepControlRegion' type='radio' value='BothDir' checked/>Both Direct 
-							<input name='stepControlRegion' type='radio' value='CustDir'/>Cust Direct 
+							<input name='stepControlRegion' type='radio' value='ProvDir'/>Prov Direct
+							<input name='stepControlRegion' type='radio' value='BothDir' checked/>Both Direct
+							<input name='stepControlRegion' type='radio' value='CustDir'/>Cust Direct
 							<input name='stepControlRegion' type='radio' value='CustSur'/>Cust Surr
 							<input name='stepControlRegion' type='radio' value='CustInd'/>Cust Ind
 						</fieldset>
@@ -214,9 +49,9 @@
 						<div class='stepControlRegionWrapper inputRegion'>
 							<input name='stepControlRegion' type='radio' value='ProvInd'/>Prov Ind
 							<input name='stepControlRegion' type='radio' value='ProvSur'/>Prov Surr
-							<input name='stepControlRegion' type='radio' value='ProvDir'/>Prov Direct 
-							<input name='stepControlRegion' type='radio' value='BothDir' checked/>Both Direct 
-							<input name='stepControlRegion' type='radio' value='CustDir'/>Cust Direct 
+							<input name='stepControlRegion' type='radio' value='ProvDir'/>Prov Direct
+							<input name='stepControlRegion' type='radio' value='BothDir' checked/>Both Direct
+							<input name='stepControlRegion' type='radio' value='CustDir'/>Cust Direct
 							<input name='stepControlRegion' type='radio' value='CustSur'/>Cust Surr
 							<input name='stepControlRegion' type='radio' value='CustInd'/>Cust Ind
 						</div>
@@ -239,9 +74,9 @@
 						<div class='stepControlRegionWrapper inputRegion'>
 							<input name='stepControlRegion' type='radio' value='ProvInd'/>Prov Ind
 							<input name='stepControlRegion' type='radio' value='ProvSur'/>Prov Surr
-							<input name='stepControlRegion' type='radio' value='ProvDir'/>Prov Direct 
-							<input name='stepControlRegion' type='radio' value='BothDir' checked/>Both Direct 
-							<input name='stepControlRegion' type='radio' value='CustDir'/>Cust Direct 
+							<input name='stepControlRegion' type='radio' value='ProvDir'/>Prov Direct
+							<input name='stepControlRegion' type='radio' value='BothDir' checked/>Both Direct
+							<input name='stepControlRegion' type='radio' value='CustDir'/>Cust Direct
 							<input name='stepControlRegion' type='radio' value='CustSur'/>Cust Surr
 							<input name='stepControlRegion' type='radio' value='CustInd'/>Cust Ind
 						</div>
@@ -264,8 +99,6 @@
 
 			<div class='stepDifficultyTab'>
 			</div>
-
-
 
 		</div>
 	</div>
