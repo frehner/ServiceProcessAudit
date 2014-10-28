@@ -1,96 +1,53 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="processAudit">
 <head>
 	<title>Service Process Audit Assist
 	</title>
 	<link rel="stylesheet" href="index.css" media="screen" title="no title" charset="utf-8">
-	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular-route.min.js"></script>
+	<script src="index.js"></script>
 </head>
 <body>
 	<div class='pageWrapper'>
 		<div class='tabHeader'>
 		</div>
 		<div class='contentWrapper'>
-			<div class='stepTabBody'>
-				<form class='stepTabForm'>
+			<div class='stepTabBody' ng-controller="StepController as stepCtrl">
+				<div class='fieldsetContainer' ng-repeat="singleStep in allSteps">
+					<div>
+						<button ng-click="addBefore($index)">Add a step here</button>
+					</div>
 					<fieldset class='step'>
-						<div class='stepClearButton'>x
+						<div class='stepClearButton'>
+							x
 						</div>
 						<span class='stepNumber'>
-						1.</span>
+							{{$index+1}}
+						</span>
 						<div class='stepDescription'>
-							<input type='textbox' class='stepDescription' placeholder='Start with a verb...'/>
+							<input type='textbox' class='stepDescription' placeholder='Start with a verb...'>
 						</div>
 						<fieldset class='stepControlRegionWrapper inputRegion'>
-							<input name='stepControlRegion' type='radio' value='ProvInd'/>Prov Ind
-							<input name='stepControlRegion' type='radio' value='ProvSur'/>Prov Surr
-							<input name='stepControlRegion' type='radio' value='ProvDir'/>Prov Direct
-							<input name='stepControlRegion' type='radio' value='BothDir' checked/>Both Direct
-							<input name='stepControlRegion' type='radio' value='CustDir'/>Cust Direct
-							<input name='stepControlRegion' type='radio' value='CustSur'/>Cust Surr
-							<input name='stepControlRegion' type='radio' value='CustInd'/>Cust Ind
+							<input name='stepControlRegion' type='radio' value='ProvInd'>Prov Ind
+							<input name='stepControlRegion' type='radio' value='ProvSur'>Prov Surr
+							<input name='stepControlRegion' type='radio' value='ProvDir'>Prov Direct
+							<input name='stepControlRegion' type='radio' value='BothDir' checked>Both Direct
+							<input name='stepControlRegion' type='radio' value='CustDir'>Cust Direct
+							<input name='stepControlRegion' type='radio' value='CustSur'>Cust Surr
+							<input name='stepControlRegion' type='radio' value='CustInd'>Cust Ind
 						</fieldset>
 						<fieldset class='stepTypeWrapper inputRegion'>
-							<input name='stepType' type='radio' value='Decision' checked/>Decision
-							<input name='stepType' type='radio' value='Wait'/>Wait
-							<input name='stepType' type='radio' value='Other'/>Other
+							<input name='stepType' type='radio' value='Decision' checked>Decision
+							<input name='stepType' type='radio' value='Wait'>Wait
+							<input name='stepType' type='radio' value='Other'>Other
 						</fieldset>
 						<div class='floatEnder'>
 						</div>
 					</fieldset>
-					<fieldset class='step'>
-						<div class='stepClearButton'>x
-						</div>
-						<span class='stepNumber'>
-						1.</span>
-						<div class='stepDescription'>
-							<input type='textbox' class='stepDescription' placeholder='Start with a verb...'/>
-						</div>
-						<div class='stepControlRegionWrapper inputRegion'>
-							<input name='stepControlRegion' type='radio' value='ProvInd'/>Prov Ind
-							<input name='stepControlRegion' type='radio' value='ProvSur'/>Prov Surr
-							<input name='stepControlRegion' type='radio' value='ProvDir'/>Prov Direct
-							<input name='stepControlRegion' type='radio' value='BothDir' checked/>Both Direct
-							<input name='stepControlRegion' type='radio' value='CustDir'/>Cust Direct
-							<input name='stepControlRegion' type='radio' value='CustSur'/>Cust Surr
-							<input name='stepControlRegion' type='radio' value='CustInd'/>Cust Ind
-						</div>
-						<div class='stepTypeWrapper inputRegion'>
-							<input name='stepType' type='radio' value='Decision' checked/>Decision
-							<input name='stepType' type='radio' value='Wait'/>Wait
-							<input name='stepType' type='radio' value='Other'/>Other
-						</div>
-						<div class='floatEnder'>
-						</div>
-					</fieldset>
-					<fieldset class='step'>
-						<div class='stepClearButton'>x
-						</div>
-						<span class='stepNumber'>
-						1.</span>
-						<div class='stepDescription'>
-							<input type='textbox' class='stepDescription' placeholder='Start with a verb...'/>
-						</div>
-						<div class='stepControlRegionWrapper inputRegion'>
-							<input name='stepControlRegion' type='radio' value='ProvInd'/>Prov Ind
-							<input name='stepControlRegion' type='radio' value='ProvSur'/>Prov Surr
-							<input name='stepControlRegion' type='radio' value='ProvDir'/>Prov Direct
-							<input name='stepControlRegion' type='radio' value='BothDir' checked/>Both Direct
-							<input name='stepControlRegion' type='radio' value='CustDir'/>Cust Direct
-							<input name='stepControlRegion' type='radio' value='CustSur'/>Cust Surr
-							<input name='stepControlRegion' type='radio' value='CustInd'/>Cust Ind
-						</div>
-						<div class='stepTypeWrapper inputRegion'>
-							<input name='stepType' type='radio' value='Decision' checked/>Decision
-							<input name='stepType' type='radio' value='Wait'/>Wait
-							<input name='stepType' type='radio' value='Other'/>Other
-						</div>
-						<div class='floatEnder'>
-						</div>
-					</fieldset>
-				</form>
-				<div class='stepTabControls'>
-					<input type='button'class='addStepButton'value='Add Step'/>
+					<div ng-if="$last">
+						<button ng-click="addAtEnd()">Add a step here</button>
+					</div>
 				</div>
 			</div>
 
