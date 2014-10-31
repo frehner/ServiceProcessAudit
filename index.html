@@ -15,9 +15,6 @@
 		<div class='contentWrapper'>
 			<div class='stepTabBody' ng-controller="StepController as stepCtrl">
 				<div class='fieldsetContainer' ng-repeat="singleStep in allSteps">
-					<div>
-						<button ng-click="addBefore($index)">Add a step here</button>
-					</div>
 					<fieldset class='step'>
 						<div class='stepClearButton'>
 							x
@@ -26,29 +23,55 @@
 							{{$index+1}}
 						</span>
 						<div class='stepDescription'>
-							<input type='textbox' class='stepDescription' placeholder='Start with a verb...'>
+							{{singleStep.text}}
 						</div>
 						<fieldset class='stepControlRegionWrapper inputRegion'>
-							<input name='stepControlRegion' type='radio' value='ProvInd'>Prov Ind
-							<input name='stepControlRegion' type='radio' value='ProvSur'>Prov Surr
-							<input name='stepControlRegion' type='radio' value='ProvDir'>Prov Direct
-							<input name='stepControlRegion' type='radio' value='BothDir' checked>Both Direct
-							<input name='stepControlRegion' type='radio' value='CustDir'>Cust Direct
-							<input name='stepControlRegion' type='radio' value='CustSur'>Cust Surr
-							<input name='stepControlRegion' type='radio' value='CustInd'>Cust Ind
+							{{singleStep.controlRegion}}
 						</fieldset>
 						<fieldset class='stepTypeWrapper inputRegion'>
-							<input name='stepType' type='radio' value='Decision' checked>Decision
-							<input name='stepType' type='radio' value='Wait'>Wait
-							<input name='stepType' type='radio' value='Other'>Other
+							{{singleStep.type}}
 						</fieldset>
 						<div class='floatEnder'>
 						</div>
 					</fieldset>
-					<div ng-if="$last">
-						<button ng-click="addAtEnd()">Add a step here</button>
+				</div>
+				<div ng-show="addStepForm.$dirty">
+					<div class="fieldsetContainer">
+						<fieldset class='step'>
+							<div class='stepDescription'>
+								{{step.text}}
+							</div>
+							<fieldset class='stepControlRegionWrapper inputRegion'>
+								{{step.controlRegion}}
+							</fieldset>
+							<fieldset class='stepTypeWrapper inputRegion'>
+								{{step.type}}
+							</fieldset>
+							<div class='floatEnder'>
+							</div>
+						</fieldset>
 					</div>
 				</div>
+
+				<form name='addStepForm' ng-submit='addStepForm.$valid && addStep()' novalidate>
+					<input type='textbox' ng-model='step.text' required>
+					<fieldset class='stepControlRegionWrapper inputRegion'>
+						<input name='stepControlRegion' type='radio' value='ProvInd' ng-model='step.controlRegion' ng-required='!step.controlRegion'>Prov Ind
+						<input name='stepControlRegion' type='radio' value='ProvSur' ng-model='step.controlRegion' ng-required='!step.controlRegion'>Prov Surr
+						<input name='stepControlRegion' type='radio' value='ProvDir' ng-model='step.controlRegion' ng-required='!step.controlRegion'>Prov Direct
+						<input name='stepControlRegion' type='radio' value='BothDir' ng-model='step.controlRegion' ng-required='!step.controlRegion'>Both Direct
+						<input name='stepControlRegion' type='radio' value='CustDir' ng-model='step.controlRegion' ng-required='!step.controlRegion'>Cust Direct
+						<input name='stepControlRegion' type='radio' value='CustSur' ng-model='step.controlRegion' ng-required='!step.controlRegion'>Cust Surr
+						<input name='stepControlRegion' type='radio' value='CustInd' ng-model='step.controlRegion' ng-required='!step.controlRegion'>Cust Ind
+					</fieldset>
+					<fieldset class='stepTypeWrapper inputRegion'>
+						<input name='stepType' type='radio' ng-model='step.type' ng-required='!step.type' value='Decision'>Decision
+						<input name='stepType' type='radio' ng-model='step.type' ng-required='!step.type' value='Wait'>Wait
+						<input name='stepType' type='radio' ng-model='step.type' ng-required='!step.type' value='Other'>Other
+					</fieldset>
+					<input type="submit" ng-disabled='addStepForm.$invalid'>
+				</form>
+
 			</div>
 
 			<div class='stepValueTab'>
@@ -58,6 +81,7 @@
 			</div>
 
 		</div>
+
 	</div>
 </body>
 </html>
