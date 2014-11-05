@@ -14,7 +14,7 @@
 		</div>
 		<div class='contentWrapper'>
 			<div class='stepTabBody' ng-controller="StepController as stepCtrl">
-				
+
 				<div class='fieldsetContainer' ng-repeat="singleStep in allSteps" ng-animate="{ enter: 'animation-enter', leave: 'animation-leave'}">
 					<fieldset class='step' >
 						<div class='stepClearButton'>
@@ -54,7 +54,7 @@
 								{{step.text}}
 							</div>
 							<fieldset class='problemValue genericStepValue'>
-								{{step.problem}}
+								{{step.problem.inconvenient}} {{step.problem.confusing}} {{step.problem.difficult}} {{step.problem.likelytofail}}
 							</fieldset>
 							<fieldset class='controlRegionValue genericStepValue'>
 								{{step.controlRegion}}
@@ -81,18 +81,31 @@
 					</div>
 
 					<div>
-					<!--TODO: Make it so that the checkboxes can select separately -->
 						<fieldset class='stepProblemWrapper inputRegion' id='stepProblemFieldset'>
 							<div>Potential Problems</div>
-							<input name='stepProblem' type='checkbox' value='inconvenient' ng-model='step.problem' ng-required='!step.problem' id='stepProblemValue_Inconvenient'><label for='stepProblemValue_Inconvenient'>Inconvenient</label>
-							</input>
-							<input name='stepProblem' type='checkbox' value='confusing' ng-model='step.problem' ng-required='!step.problem' id='stepProblemValue_Confusing'>
-								<label for='stepProblemValue_Confusing'>Confusing</label>
-							</input>
-							<input name='stepProblem' type='checkbox' value='difficult' ng-model='step.problem' ng-required='!step.problem' id='stepProblemValue_Difficult'><label for='stepProblemValue_Difficult'>Difficult</label>
-							</input>
-							<input name='stepControlRegion' type='checkbox' value='likelyToFail' ng-model='step.problem' ng-required='!step.problem' id='stepProblemValue_LikelyToFail'><label for='stepProblemValue_LikelyToFail'>Likely To Fail</label>
-							</input>
+							<label>
+								Inconvenient
+								<input name='stepProblem' type='checkbox' value='inconvenient' ng-model='step.problem.inconvenient' ng-true-value='Inconvenient' ng-false-value=''>
+							</label>
+							<textarea ng-show='step.problem.inconvenient'></textarea>
+
+							<label>
+								Confusing
+								<input name='stepProblem' type='checkbox' value='confusing' ng-model='step.problem.confusing'  ng-true-value='Confusing' ng-false-value=''>
+							</label>
+							<textarea ng-show='step.problem.confusing'></textarea>
+
+							<label>
+								Difficult
+								<input name='stepProblem' type='checkbox' value='difficult' ng-model='step.problem.difficult'  ng-true-value='Difficult' ng-false-value=''>
+							</label>
+							<textarea ng-show='step.problem.difficult'></textarea>
+
+							<label>
+								Likely To Fail
+								<input name='stepProblem' type='checkbox' value='likelyToFail' ng-model='step.problem.likelytofail' ng-true-value='Likely to fail' ng-false-value=''>
+							</label>
+							<textarea ng-show='step.problem.likelytofail'></textarea>
 						</fieldset>
 
 						<fieldset class='stepControlRegionWrapper inputRegion' name='stepControlRegionFieldset'>
@@ -128,14 +141,7 @@
 								<!-- https://docs.angularjs.org/api/ng/directive/select -->
 							</select>
 						</fieldset>
-
-
 						<!-- TODO: CUSTOMER VALUE -->
-
-
-
-
-
 					</div>
 					<input type="submit" ng-disabled='addStepForm.$invalid' value='Add Step'></input>
 
@@ -151,84 +157,6 @@
 				<a href='http://services.byu.edu/pcn/pcn-wizard-0_4.html' target='_blank'>Original PCN Tool</a><!-- TODO: Wish that there was a way to pass parameters to this-->
 
 			</div>
-
-			<style>
-				* {
-					border-radius: 2px;
-				}
-				.testHolder {
-					height:65px;
-					width: 100%;
-					background-color:#dd2900;
-					margin: 12px 16px 12px 7px;
-					-webkit-transition: all 0.6s ease-out;
-				    -moz-transition: all 0.6s ease-out;
-				    -o-transition: all 0.6s ease-out;
-				    transition: all 0.6s ease-out;
-				}
-
-				.textHolder {
-
-				}
-
-				.problemHolder {
-
-				}
-				.problemHolder > * {
-					float:left;
-					padding: 10px 0px 10px 10px;
-				}
-				.problemCheckbox {
-
-				}
-				.problemDescriptionToggle {
-					display: none;
-				}
-				.problemDescription {
-					padding-bottom: 4px;
-					border: none;
-					border-bottom: 2px solid #cc1000;
-					/* http://robertnyman.com/2010/01/11/css-background-transparency-without-affecting-child-elements-through-rgba-and-filters/ */
-					/* Fallback for web browsers that doesn't support RGBa */
-					background: rgb(0, 0, 0);
-					/* RGBa with 0.6 opacity */
-					background: rgba(0, 0, 0, 0);
-				}
-				.problemDescription:focus {
-					color:white;
-				}
-
-
-
-
-				@media screen and (max-width: 700px) {
-					.testHolder {
-						height:65px;
-						width: 100%;
-						background-color:#dd2063;
-						margin: 12px 16px 12px 7px;
-					}
-
-					.textHolder {
-
-					}
-
-					.problemHolder {
-
-					}
-					.problemCheckbox {
-						float:left;
-						padding:10px;
-					}
-					.problemDescriptionToggle {
-						display: inline;
-					}
-					.problemDescription {
-						display: none;
-					}
-				}
-			</style>
-
 			<div>
 				<div class='testHolder'>
 					<div class='textholder'>
@@ -259,16 +187,16 @@
 					</div>
 				</div>
 				<div class='testHolder'>
-					
+
 				</div>
 				<div class='testHolder'>
-					
+
 				</div>
 				<div class='testHolder'>
-					
+
 				</div>
 				<div class='testHolder'>
-					
+
 				</div>
 
 			</div>
