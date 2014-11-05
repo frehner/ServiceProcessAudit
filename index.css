@@ -18,6 +18,44 @@ body {
 form.stepTabBody {
 
 }
+
+
+
+.animationEnter {
+  -webkit-transition: 1s linear all; /* Safari/Chrome */
+  -moz-transition: 1s linear all; /* Firefox */
+  -o-transition: 1s linear all; /* Opera */
+  transition: 1s linear all; /* IE10+ and Future Browsers */
+}
+
+
+.animate-enter {
+  -webkit-animation: enter_sequence 1s linear; /* Safari/Chrome */
+  -moz-animation: enter_sequence 1s linear; /* Firefox */
+  -o-animation: enter_sequence 1s linear; /* Opera */
+  animation: enter_sequence 1s linear; /* IE10+ and Future Browsers */
+}
+@-webkit-keyframes enter_sequence {
+  from { opacity:0; }
+  to { opacity:1; }
+}
+@-moz-keyframes enter_sequence {
+  from { opacity:0; }
+  to { opacity:1; }
+}
+@-o-keyframes enter_sequence {
+  from { opacity:0; }
+  to { opacity:1; }
+}
+@keyframes enter_sequence {
+  from { opacity:0; }
+  to { opacity:1; }
+}
+
+
+
+
+
 fieldset.step {
   border: none;
   background-color: #878787;
@@ -26,6 +64,8 @@ fieldset.step {
   margin: 12px;
   min-height: 26px;
   box-shadow: 2px 2px 4px #676767;
+
+  transition: all 5s;
 }
 fieldset.step:hover{
   /*background-color: #6C6C6C;*/
@@ -48,6 +88,67 @@ div.stepDescription {
   margin-right: 4px;
   padding:2px;
 }
+
+
+/* INDIVIDUAL PROCESS STEP VALUES */
+
+.genericStepValue {
+  color: white;
+  border: none;
+  float: left;
+}
+
+.problemValue {
+  background-color: #B7B7BF;
+  border-left: 3px solid #df2301;
+}
+
+.controlRegionValue {
+  background-color: #B7B7BF;
+  border-left: 3px solid #41df31;
+}
+
+.typeValue {
+  background-color: #B7B7BF;
+  border-left: 3px solid #0900ef;
+}
+
+
+/* === INPUT REGIONS === */
+.inputRegion {
+  /*float: left;*/
+  color: black;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+
+  border: none;
+  margin: 4px 2px 4px 2px;
+  padding: 5px;
+  padding-right: 8px;
+  width: 340px;
+  min-height: 60px;
+  /*min-width: 320px;*/
+  background-color: #bdbdc2;
+  
+}
+.stepProblemWrapper {
+  border-left: 3px solid #df2301;
+}
+.stepControlRegionWrapper {
+  border-left: 3px solid #41df31;
+}
+.stepTypeWrapper {
+  border-left: 3px solid #0900ef;
+}
+
+
+
+
+/* === NEW PROCESS STEP INPUTS === */
 
 input[type='textbox'].stepDescription {
   border:none;
@@ -74,30 +175,12 @@ input.stepDescription:-ms-input-placeholder {
     color: #c7c7c7;
 }
 
-.inputRegion {
-  float: left;
-  color: white;
-    -webkit-touch-callout: none;
-    -webkit-user-select: none;
-    -khtml-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
 
-    border: 1px solid #9f9f9f;
-    margin: -2px 2px 2px 2px;
-    padding: 3px;
-}
 
-.stepControlRegionWrapper {
-}
-input[name='stepControlRegion']{
-}
 
-.stepTypeWrapper {
-}
-input[name='stepType']{
-}
+
+
+
 
 .stepClearButton {
   float:left;
@@ -127,6 +210,28 @@ input[name='stepType']{
 .stepClearButton:active {
   cursor:pointer;
   color: #8d2222 !important;
+}
+
+input.stepTitleTextbox {
+  border: none;
+}
+
+textarea.finalJson {
+  margin-top:26px;
+  min-width: 260px;
+  min-height: 80px;
+  border:none;
+  background-color:#dfdfdf;
+  overflow:auto;
+  transition: all 200ms;
+}
+
+textarea.finalJson:focus {
+  background-color: #fff;  
+}
+
+.floatLeft {
+  float:left;
 }
 
 .floatEnder {
