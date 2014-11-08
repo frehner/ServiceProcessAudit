@@ -2,20 +2,42 @@
   var app = angular.module('processAudit', []);
 
   app.controller('StepController', function($scope){
-    $scope.allSteps = [];
+    $scope.finalJSON = {};
+    $scope.finalJSON.metadata = {};
+    $scope.finalJSON.domains = [];
+    $scope.finalJSON.steps = [];
+
     $scope.step = {};
+    $scope.domain1 = {};
+    $scope.domain2 = {};
 
     //adds a step then cleans the form
     $scope.addStep = function(){
-      $scope.allSteps.push($scope.step);
+      $scope.finalJSON.steps.push($scope.step);
       $scope.step = {};
       $scope.addStepForm.$setPristine();
     };
 
-    //looks for additions to the allSteps array
-    $scope.$watchCollection('allSteps', function updatedJsonView(){
-      $scope.finalJson = JSON.stringify($scope.allSteps);
-    });
+    $scope.updateJSON = function(){
+      $scope.finalJSON.domains = [];
+      $scope.finalJSON.domains.push($scope.domain1);
+      $scope.finalJSON.domains.push($scope.domain2);
+      $scope.finalJson = JSON.stringify($scope.finalJSON);
+    };
 
+    //looks for additions to the steps array
+    $scope.$watchCollection('finalJSON.steps', $scope.updateJSON);
+
+  });
+
+  app.filter('firstUpperAndUlToSpace', function(){
+    return function(text){
+      if(text && text.length > 0){
+        var newText = text.replace(/_/g, " ");
+        return newText.charAt(0).toUpperCase()+newText.substr(1).toLowerCase();
+      } else {
+        return "";
+      }
+    };
   });
 })();

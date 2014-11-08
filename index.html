@@ -14,8 +14,29 @@
 		</div>
 		<div class='contentWrapper'>
 			<div class='stepTabBody' ng-controller="StepController as stepCtrl">
+				<div class='fieldsetContainer'>
+					<form id="metadataForm" ng-submit='updateJSON()' novalidate>
+						<div>
+							<h3>Process</h3>
+							Title <input type="text" ng-model='finalJSON.metadata.title'>
+							Description<input type="text" ng-model='finalJSON.metadata.description'>
+							Author<input type="text" ng-model='finalJSON.metadata.author'>
+						</div>
+						<div>
+							<h3>Domain 1</h3>
+							Name <input type="text" ng-model='domain1.title'>
+							Subtitle <input type="text" ng-model='domain1.subtitle'>
+						</div>
+						<div>
+							<h3>Domain 2</h3>
+							Name <input type="text" ng-model='domain2.title'>
+							Subtitle <input type="text" ng-model='domain2.subtitle'>
+						</div>
+						<input type="submit" value='Update'>
+					</form>
+				</div>
 
-				<div class='fieldsetContainer' ng-repeat="singleStep in allSteps" ng-animate="{ enter: 'animation-enter', leave: 'animation-leave'}">
+				<div class='fieldsetContainer' ng-repeat="singleStep in finalJSON.steps" ng-animate="{ enter: 'animation-enter', leave: 'animation-leave'}">
 					<fieldset class='step' >
 						<div class='stepClearButton'>
 							x
@@ -24,7 +45,7 @@
 							{{$index+1}}
 						</span>
 						<div class='stepDescription'>
-							{{singleStep.text}}
+							{{singlestep.title}}
 						</div>
 						<fieldset class='problemValue genericStepValue'>
 							{{singleStep.problem}}
@@ -33,7 +54,7 @@
 							{{singleStep.controlRegion}}
 						</fieldset>
 						<fieldset class='typeValue genericStepValue'>
-							{{singleStep.type}}
+							{{singleStep.type | firstUpperAndUlToSpace}}
 						</fieldset>
 						<fieldset class='previousStepValue genericStepValue'>
 							{{singleStep.previousStep}}
@@ -51,7 +72,7 @@
 					<div class="fieldsetContainer">
 						<fieldset class='step'>
 							<div class='stepDescription'>
-								{{step.text}}
+								{{step.title}}
 							</div>
 							<fieldset class='problemValue genericStepValue'>
 								{{step.problem.inconvenient}} {{step.problem.confusing}} {{step.problem.difficult}} {{step.problem.likelytofail}}
@@ -60,7 +81,7 @@
 								{{step.controlRegion}}
 							</fieldset>
 							<fieldset class='typeValue genericStepValue'>
-								{{step.type}}
+								{{step.type | firstUpperAndUlToSpace}}
 							</fieldset>
 							<fieldset class='previousStepValue genericStepValue'>
 								{{step.previousStep}}
@@ -77,7 +98,7 @@
 				<form name='addStepForm' ng-submit='addStepForm.$valid && addStep()' novalidate>
 
 					<div class=''>
-						<input type='textbox' ng-model='step.text' class='stepTitleTextbox' required>
+						Step name <input type='textbox' ng-model='step.title' class='stepTitleTextbox' required>
 					</div>
 
 					<div>
@@ -121,9 +142,10 @@
 
 						<fieldset class='stepTypeWrapper inputRegion' name='stepTypeFieldset'>
 							<div>Step Type</div>
-							<input name='stepType' type='radio' ng-model='step.type' ng-required='!step.type' value='Regualr'>Regular
-							<input name='stepType' type='radio' ng-model='step.type' ng-required='!step.type' value='Decision'>Decision
-							<input name='stepType' type='radio' ng-model='step.type' ng-required='!step.type' value='Wait'>Wait
+							<input name='stepType' type='radio' ng-model='step.type' ng-required='!step.type' value='process'>Process
+							<input name='stepType' type='radio' ng-model='step.type' ng-required='!step.type' value='decision'>Decision
+							<input name='stepType' type='radio' ng-model='step.type' ng-required='!step.type' value='wait'>Wait
+							<input name='stepType' type='radio' ng-model='step.type' ng-required='!step.type' value='divergent_process'>Divergent Process
 						</fieldset>
 
 						<fieldset class='previousStepWrapper inputRegion' name='stepPreviousStepFieldset'>
