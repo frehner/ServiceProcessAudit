@@ -19,10 +19,8 @@
     };
 
     $scope.updateJSON = function(){
-      $scope.finalJSON.domains = [];
-      $scope.finalJSON.domains.push($scope.domain1);
-      $scope.finalJSON.domains.push($scope.domain2);
-      $scope.finalJson = JSON.stringify($scope.finalJSON);
+      $scope.finalJSON.domains = [$scope.domain1, $scope.domain2];
+      $scope.finalJson = angular.toJson($scope.finalJSON);
     };
 
     //looks for additions to the steps array
@@ -34,7 +32,7 @@
     return function(text){
       if(text && text.length > 0){
         var newText = text.replace(/_/g, " ");
-        return newText.charAt(0).toUpperCase()+newText.substr(1).toLowerCase();
+        return newText.charAt(0).toUpperCase()+newText.substr(1);
       } else {
         return "";
       }

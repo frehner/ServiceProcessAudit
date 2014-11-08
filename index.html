@@ -149,16 +149,10 @@
 						</fieldset>
 
 						<fieldset class='previousStepWrapper inputRegion' name='stepPreviousStepFieldset'>
-							<div>Previous Step</div>
+							<div>Select Previous Step(s)</div>
 							<select multiple>
-								<option>None</option>
-								<option>Previous</option>
-								<option>X1</option>
-								<option>X2</option>
-								<option>(No X3--that's this one)</option>
-								<option>X4</option>
-								<option>X5</option>
-								<option>X6</option>
+								<option value=''>None</option>
+								<option ng-repeat='oneStep in finalJSON.steps' value='oneStep.title'>{{oneStep.title}}</option>
 								<!-- TODO: Dynamically build these based upon other existing steps whenever the select is clicked. Values should include: 'None', 'previous' (trickier), and then list of all steps, except this one. Fun, eh?-->
 								<!-- https://docs.angularjs.org/api/ng/directive/select -->
 							</select>
