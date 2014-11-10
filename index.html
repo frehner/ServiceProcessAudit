@@ -106,27 +106,27 @@
 							<div>Potential Problems</div>
 							<label>
 								Inconvenient
-								<input name='stepProblem' type='checkbox' value='inconvenient' ng-model='step.problem.inconvenient' ng-true-value='Inconvenient' ng-false-value=''>
+								<input name='stepProblem' type='checkbox' value='inconvenient' ng-model='step.problems.inconvenient.type' ng-true-value='Inconvenient' ng-false-value=''>
 							</label>
-							<textarea ng-show='step.problem.inconvenient'></textarea>
+							<textarea ng-show='step.problems.inconvenient.description'></textarea>
 
 							<label>
 								Confusing
-								<input name='stepProblem' type='checkbox' value='confusing' ng-model='step.problem.confusing'  ng-true-value='Confusing' ng-false-value=''>
+								<input name='stepProblem' type='checkbox' value='confusing' ng-model='step.problems.confusing.type'  ng-true-value='Confusing' ng-false-value=''>
 							</label>
-							<textarea ng-show='step.problem.confusing'></textarea>
+							<textarea ng-show='step.problems.confusing.description'></textarea>
 
 							<label>
 								Difficult
-								<input name='stepProblem' type='checkbox' value='difficult' ng-model='step.problem.difficult'  ng-true-value='Difficult' ng-false-value=''>
+								<input name='stepProblem' type='checkbox' value='difficult' ng-model='step.problems.difficult.type'  ng-true-value='Difficult' ng-false-value=''>
 							</label>
-							<textarea ng-show='step.problem.difficult'></textarea>
+							<textarea ng-show='step.problems.difficult.description'></textarea>
 
 							<label>
 								Likely To Fail
-								<input name='stepProblem' type='checkbox' value='likelyToFail' ng-model='step.problem.likelytofail' ng-true-value='Likely to fail' ng-false-value=''>
+								<input name='stepProblem' type='checkbox' value='likely_to_fail' ng-model='step.problems.likelytofail.type' ng-true-value='Likely to fail' ng-false-value=''>
 							</label>
-							<textarea ng-show='step.problem.likelytofail'></textarea>
+							<textarea ng-show='step.problems.likelytofail.description'></textarea>
 						</fieldset>
 
 						<fieldset class='stepControlRegionWrapper inputRegion' name='stepControlRegionFieldset'>
@@ -146,6 +146,29 @@
 							<input name='stepType' type='radio' ng-model='step.type' ng-required='!step.type' value='decision'>Decision
 							<input name='stepType' type='radio' ng-model='step.type' ng-required='!step.type' value='wait'>Wait
 							<input name='stepType' type='radio' ng-model='step.type' ng-required='!step.type' value='divergent_process'>Divergent Process
+						</fieldset>
+
+						<fieldset class='inputRegion'>
+							<div>Emphasized</div>
+							<input type="checkbox" name='emphasizedCheckbox' ng-model='step.emphasized'>
+							<div ng-show='step.emphasized'>Yes</div>
+							<div ng-show='!step.emphasized'>No</div>
+						</fieldset>
+
+						<fieldset class='inputRegion'>
+							<div>Specific Value Realization</div>
+							<input type="radio" name='specificValueRealization' ng-model='step.value_specific' value='2'> :D :D
+							<input type="radio" name="specificValueRealization" ng-model='step.value_specific' value='1'> :D
+							<input type="radio" name="specificValueRealization" ng-model='step.value_specific' value='0'> Meh
+							<input type="radio" name="specificValueRealization" ng-model='step.value_specific' value='-1'> :(
+						</fieldset>
+
+						<fieldset class='inputRegion'>
+							<div>Generic Value Realization</div>
+							<input type="radio" name='genericValueRealization' ng-model='step.value_generic' value='2'> $$
+							<input type="radio" name="genericValueRealization" ng-model='step.value_generic' value='1'> $
+							<input type="radio" name="genericValueRealization" ng-model='step.value_generic' value='0'> Meh
+							<input type="radio" name="genericValueRealization" ng-model='step.value_generic' value='-1'> -$
 						</fieldset>
 
 						<fieldset class='previousStepWrapper inputRegion' name='stepPreviousStepFieldset'>
