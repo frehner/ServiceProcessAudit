@@ -75,7 +75,7 @@
 								{{step.title}}
 							</div>
 							<fieldset class='problemValue genericStepValue'>
-								{{step.problem.inconvenient}} {{step.problem.confusing}} {{step.problem.difficult}} {{step.problem.likelytofail}}
+								{{inconvenient.type}} {{inconvenient.description}} {{confusing.type}} {{confusing.description}} {{difficult.type}} {{difficult.description}} {{likelytofail.type}} {{likelytofail.description}}
 							</fieldset>
 							<fieldset class='controlRegionValue genericStepValue'>
 								{{step.controlRegion}}
@@ -85,6 +85,9 @@
 							</fieldset>
 							<fieldset class='previousStepValue genericStepValue'>
 								{{step.previousStep}}
+							</fieldset>
+							<fieldset ng-show='step.emphasized'>
+								Emphasized
 							</fieldset>
 							<!--TODO: how does Select work here?-->
 
@@ -106,27 +109,27 @@
 							<div>Potential Problems</div>
 							<label>
 								Inconvenient
-								<input name='stepProblem' type='checkbox' value='inconvenient' ng-model='step.problems.inconvenient.type' ng-true-value='Inconvenient' ng-false-value=''>
+								<input name='inconvenientCheckbox' type='checkbox' ng-true-value='inconvenient' ng-false-value='' ng-model='inconvenient.type'>
 							</label>
-							<textarea ng-show='step.problems.inconvenient.description'></textarea>
+							<textarea ng-show='inconvenient.type' ng-model='inconvenient.description'></textarea>
 
 							<label>
 								Confusing
-								<input name='stepProblem' type='checkbox' value='confusing' ng-model='step.problems.confusing.type'  ng-true-value='Confusing' ng-false-value=''>
+								<input name='confusingCheckbox' type='checkbox' ng-true-value='confusing' ng-false-value='' ng-model='confusing.type'>
 							</label>
-							<textarea ng-show='step.problems.confusing.description'></textarea>
+							<textarea ng-show='confusing.type'></textarea>
 
 							<label>
 								Difficult
-								<input name='stepProblem' type='checkbox' value='difficult' ng-model='step.problems.difficult.type'  ng-true-value='Difficult' ng-false-value=''>
+								<input name='difficultCheckbox' type='checkbox' ng-true-value='difficult' ng-false-value='' ng-model='difficult.type'>
 							</label>
-							<textarea ng-show='step.problems.difficult.description'></textarea>
+							<textarea ng-show='difficult.type'></textarea>
 
 							<label>
 								Likely To Fail
-								<input name='stepProblem' type='checkbox' value='likely_to_fail' ng-model='step.problems.likelytofail.type' ng-true-value='Likely to fail' ng-false-value=''>
+								<input name='likelyFailCheckbox' type='checkbox' ng-true-value='likely_to_fail' ng-false-value='' ng-model='likelytofail.type'>
 							</label>
-							<textarea ng-show='step.problems.likelytofail.description'></textarea>
+							<textarea ng-show='likelytofail.type'></textarea>
 						</fieldset>
 
 						<fieldset class='stepControlRegionWrapper inputRegion' name='stepControlRegionFieldset'>
