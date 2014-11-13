@@ -48,7 +48,7 @@
 							{{singlestep.title}}
 						</div>
 						<fieldset class='problemValue genericStepValue'>
-							{{singleStep.problem}}
+							{{singleStep.problems}}
 						</fieldset>
 						<fieldset class='controlRegionValue genericStepValue'>
 							{{singleStep.controlRegion}}
@@ -107,29 +107,13 @@
 					<div>
 						<fieldset class='stepProblemWrapper inputRegion' id='stepProblemFieldset'>
 							<div>Potential Problems</div>
-							<label>
-								Inconvenient
-								<input name='inconvenientCheckbox' type='checkbox' ng-true-value='inconvenient' ng-false-value='' ng-model='inconvenient.type'>
-							</label>
-							<textarea ng-show='inconvenient.type' ng-model='inconvenient.description'></textarea>
-
-							<label>
-								Confusing
-								<input name='confusingCheckbox' type='checkbox' ng-true-value='confusing' ng-false-value='' ng-model='confusing.type'>
-							</label>
-							<textarea ng-show='confusing.type'></textarea>
-
-							<label>
-								Difficult
-								<input name='difficultCheckbox' type='checkbox' ng-true-value='difficult' ng-false-value='' ng-model='difficult.type'>
-							</label>
-							<textarea ng-show='difficult.type'></textarea>
-
-							<label>
-								Likely To Fail
-								<input name='likelyFailCheckbox' type='checkbox' ng-true-value='likely_to_fail' ng-false-value='' ng-model='likelytofail.type'>
-							</label>
-							<textarea ng-show='likelytofail.type'></textarea>
+							<span ng-repeat='oneProblem in tempProblems'>
+								<label>
+									{{oneProblem.name | firstUpperAndUlToSpace}}
+									<input type="checkbox" name="problemsCheckbox" value="{{oneProblem.name}}" ng-model='oneProblem.selected'>
+								</label>
+								<textarea ng-show='oneProblem.selected' ng-model='oneProblem.description'></textarea>
+							</span>
 						</fieldset>
 
 						<fieldset class='stepControlRegionWrapper inputRegion' name='stepControlRegionFieldset'>

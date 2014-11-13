@@ -1,4 +1,6 @@
 (function(){
+  var staticProblemArray = [{'name':'inconvenient', 'selected':false, 'description':''}, {'name':'confusing', 'selected':false, 'description':''}, {'name':'difficult', 'selected':false, 'description':''}, {'name':'likely_to_fail', 'selected':false, 'description':''}];
+
   var app = angular.module('processAudit', []);
 
   app.controller('StepController', function($scope){
@@ -11,8 +13,19 @@
     $scope.domain1 = {};
     $scope.domain2 = {};
 
+    $scope.tempProblems = angular.copy(staticProblemArray);
+
     //adds a step then cleans the form
     $scope.addStep = function(){
+      $scope.step.problems = [];
+
+      angular.forEach($scope.tempProblems, function(tempProb){
+        if (tempProb.selected) {
+          $scope.step.problems.push({'type':tempProb.name, 'description':tempProb.description});
+        }
+      });
+
+      $scope.tempProblems = angular.copy(staticProblemArray);
       $scope.finalJSON.steps.push($scope.step);
       $scope.step = {};
       $scope.addStepForm.$setPristine();
