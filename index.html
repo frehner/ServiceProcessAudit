@@ -7,6 +7,10 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular-route.min.js"></script>
 	<script src="index.js"></script>
+	<script src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
+	<script src="validation.js"></script>
+	<script src="lib/tv4.min.js"></script>
+	
 </head>
 <body>
 	<div class='pageWrapper'>
@@ -71,7 +75,7 @@
 					</fieldset>
 					<input type="submit" ng-disabled='addStepForm.$invalid'>
 				</form>
-				<textarea ng-model='finalJson'></textarea>
+				<textarea id="finalJson" ng-model='finalJson'></textarea>
 			</div>
 
 			<div class='stepValueTab'>
@@ -82,6 +86,9 @@
 
 		</div>
 
+	</div>
+	<input id="validate" type="button" value="Validate"/>
+	<div id="validation">
 	</div>
 </body>
 </html>
