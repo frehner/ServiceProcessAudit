@@ -43,7 +43,8 @@
 							Name <input type="text" ng-model='domain2.title'>
 							Subtitle <input type="text" ng-model='domain2.subtitle'>
 						</div>
-						<input type="submit" value='Update'>
+						
+						<input class="pushinMyButtons" type="submit" value='Update'>
 					</form>
 				</div>
 
@@ -109,15 +110,15 @@
 					</div>
 				</div>
 
-				<form name='addStepForm' ng-submit='addStepForm.$valid && addStep()' novalidate>
-
+				<form id="ThISISTheTALE" name='addStepForm' ng-submit='addStepForm.$valid && addStep()' novalidate>
+					<br>
 					<div class=''>
-						Step name <input type='textbox' ng-model='step.title' class='stepTitleTextbox' required>
+						Step name <input type='text' ng-model='step.title' class='stepTitleTextbox' required>
 					</div>
-
+					<br>
 					<div>
 						<fieldset class='stepProblemWrapper inputRegion' id='stepProblemFieldset'>
-							<div>Potential Problems</div>
+							<u><b><div>Potential Problems</div></b></u>
 							<span ng-repeat='oneProblem in tempProblems'>
 								<label>
 									{{oneProblem.name | firstUpperAndUlToSpace}}
@@ -125,52 +126,57 @@
 								</label>
 								<textarea ng-show='oneProblem.selected' ng-model='oneProblem.description'></textarea>
 							</span>
+							<br>
 						</fieldset>
 
 						<fieldset class='stepControlRegionWrapper inputRegion' name='stepControlRegionFieldset'>
-							<div>Control Region</div>
-							<input name='stepControlRegion' type='radio' value='ProvInd' ng-model='step.controlRegion' ng-required='!step.controlRegion'>Prov Ind
-							<input name='stepControlRegion' type='radio' value='ProvSur' ng-model='step.controlRegion' ng-required='!step.controlRegion'>Prov Surr
-							<input name='stepControlRegion' type='radio' value='ProvDir' ng-model='step.controlRegion' ng-required='!step.controlRegion'>Prov Direct
-							<input name='stepControlRegion' type='radio' value='BothDir' ng-model='step.controlRegion' ng-required='!step.controlRegion'>Both Direct
-							<input name='stepControlRegion' type='radio' value='CustDir' ng-model='step.controlRegion' ng-required='!step.controlRegion'>Cust Direct
-							<input name='stepControlRegion' type='radio' value='CustSur' ng-model='step.controlRegion' ng-required='!step.controlRegion'>Cust Surr
-							<input name='stepControlRegion' type='radio' value='CustInd' ng-model='step.controlRegion' ng-required='!step.controlRegion'>Cust Ind
+							<u><b><div>Control Region </div> </b></u>
+							Prov Ind <input name='stepControlRegion' type='radio' value='ProvInd' ng-model='step.controlRegion' ng-required='!step.controlRegion'>
+							Prov Surr <input name='stepControlRegion' type='radio' value='ProvSur' ng-model='step.controlRegion' ng-required='!step.controlRegion'>
+							Prov Direct <input name='stepControlRegion' type='radio' value='ProvDir' ng-model='step.controlRegion' ng-required='!step.controlRegion'>
+							Both Direct <input name='stepControlRegion' type='radio' value='BothDir' ng-model='step.controlRegion' ng-required='!step.controlRegion'>
+							Cust Direct <input name='stepControlRegion' type='radio' value='CustDir' ng-model='step.controlRegion' ng-required='!step.controlRegion'>
+							Cust Surr <input name='stepControlRegion' type='radio' value='CustSur' ng-model='step.controlRegion' ng-required='!step.controlRegion'>
+							Cust Ind <input name='stepControlRegion' type='radio' value='CustInd' ng-model='step.controlRegion' ng-required='!step.controlRegion'>
+							<br>
 						</fieldset>
 
 						<fieldset class='stepTypeWrapper inputRegion' name='stepTypeFieldset'>
-							<div>Step Type</div>
-							<input name='stepType' type='radio' ng-model='step.type' ng-required='!step.type' value='process'>Process
-							<input name='stepType' type='radio' ng-model='step.type' ng-required='!step.type' value='decision'>Decision
-							<input name='stepType' type='radio' ng-model='step.type' ng-required='!step.type' value='wait'>Wait
-							<input name='stepType' type='radio' ng-model='step.type' ng-required='!step.type' value='divergent_process'>Divergent Process
+							<u><b><div>Step Type</div></b></u>
+							Process <input name='stepType' type='radio' ng-model='step.type' ng-required='!step.type' value='process'>
+							Decision <input name='stepType' type='radio' ng-model='step.type' ng-required='!step.type' value='decision'>
+							Wait <input name='stepType' type='radio' ng-model='step.type' ng-required='!step.type' value='wait'>
+							Divergent <input name='stepType' type='radio' ng-model='step.type' ng-required='!step.type' value='divergent_process'>
+							<br>
 						</fieldset>
 
 						<fieldset class='inputRegion'>
-							<div>Emphasized</div>
+							<u><b><div>Emphasized</div></b></u>
 							<input type="checkbox" name='emphasizedCheckbox' ng-model='step.emphasized'>
-							<div ng-show='step.emphasized'>Yes</div>
-							<div ng-show='!step.emphasized'>No</div>
+							Yes <div ng-show='step.emphasized'></div>
+							No <div ng-show='!step.emphasized'></div>
 						</fieldset>
 
 						<fieldset class='inputRegion'>
-							<div>Specific Value Realization</div>
-							<input type="radio" name='specificValueRealization' ng-model='step.value_specific' value='2'> :D :D
-							<input type="radio" name="specificValueRealization" ng-model='step.value_specific' value='1'> :D
-							<input type="radio" name="specificValueRealization" ng-model='step.value_specific' value='0'> Meh
-							<input type="radio" name="specificValueRealization" ng-model='step.value_specific' value='-1'> :(
+							<u><b><div>Specific Value</div></b></u>
+							:D :D <input type="radio" name='specificValueRealization' ng-model='step.value_specific' value='2'> 
+							:D <input type="radio" name="specificValueRealization" ng-model='step.value_specific' value='1'> 
+							Meh <input type="radio" name="specificValueRealization" ng-model='step.value_specific' value='0'> 
+							:( <input type="radio" name="specificValueRealization" ng-model='step.value_specific' value='-1'> 
+							<br>
 						</fieldset>
 
 						<fieldset class='inputRegion'>
-							<div>Generic Value Realization</div>
+							<u><b><div>Generic Value</div></b></u>
 							<input type="radio" name='genericValueRealization' ng-model='step.value_generic' value='2'> $$
 							<input type="radio" name="genericValueRealization" ng-model='step.value_generic' value='1'> $
 							<input type="radio" name="genericValueRealization" ng-model='step.value_generic' value='0'> Meh
 							<input type="radio" name="genericValueRealization" ng-model='step.value_generic' value='-1'> -$
+							<br>
 						</fieldset>
 
 						<fieldset class='previousStepWrapper inputRegion' name='stepPreviousStepFieldset'>
-							<div>Select Previous Step(s)</div>
+							<u><b><div>Select Previous Step(s)</div></b></u>
 							<select multiple>
 								<option value=''>None</option>
 								<option ng-repeat='oneStep in finalJSON.steps' value='oneStep.title'>{{oneStep.title}}</option>
