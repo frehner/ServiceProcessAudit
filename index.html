@@ -20,6 +20,8 @@
 	
 	<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
 
+	<script type="text/javascript" src="lib/bootstrap-multiselect/js/bootstrap-multiselect.js"></script>
+	<link rel="stylesheet" href="lib/boostrap-multiselect/css/bootstrap-multiselect.css" type="text/css"/>
 	
 </head>
 <body>
@@ -271,6 +273,7 @@
 
 						<fieldset class='inputRegion'>
 							<h4>Emphasized</h4>
+							
 							<input type="checkbox" name='emphasizedCheckbox' ng-model='step.emphasized'>
 							<div ng-show='step.emphasized'>Yes</div>
 							<div ng-show='!step.emphasized'>No</div>
@@ -308,6 +311,33 @@
 
 						<fieldset class='inputRegion'>
 							<h4>Generic Value Realization</h4>
+								<div class="btn-group btn-group-justified" data-toggle="buttons">
+								  <label class="btn btn-primary">
+									<input type="radio" autocomplete="off">
+									<span class="glyphicon glyphicon-usd" aria-hidden="true"></span>
+									<span class="glyphicon glyphicon-usd" aria-hidden="true"></span>
+								  </label>
+								  <label class="btn btn-primary">
+									<input type="radio" autocomplete="off">
+									<span class="glyphicon glyphicon-usd" aria-hidden="true"></span>
+								  </label>
+								  <label class="btn btn-primary active">
+									<input type="radio" autocomplete="off" checked>
+									<span class="glyphicon glyphicon-minus" aria-hidden="true"></span>
+								  </label>
+								  <label class="btn btn-primary">
+									<input type="radio" autocomplete="off">
+									<span class="glyphicon glyphicon-minus" aria-hidden="true"></span>
+									<span class="glyphicon glyphicon-usd" aria-hidden="true"></span>
+								  </label>
+								  <label class="btn btn-primary">
+									<input type="radio" autocomplete="off">
+									<span class="glyphicon glyphicon-minus" aria-hidden="true"></span>
+									<span class="glyphicon glyphicon-usd" aria-hidden="true"></span>
+									<span class="glyphicon glyphicon-usd" aria-hidden="true"></span>
+								  </label>
+								</div>
+							
 							<input type="radio" name='genericValueRealization' ng-model='step.value_generic' value='2'> $$
 							<input type="radio" name="genericValueRealization" ng-model='step.value_generic' value='1'> $
 							<input type="radio" name="genericValueRealization" ng-model='step.value_generic' value='0'> Meh
@@ -316,6 +346,17 @@
 
 						<fieldset class='previousStepWrapper inputRegion' name='stepPreviousStepFieldset'>
 							<h4>Select Previous Step(s)</h4>
+							
+							<select id="example-getting-started" multiple="multiple">
+								<option value="">None</option>
+								<option ng-repeat='oneStep in finalJSON.steps' value='oneStep.title'>{{oneStep.title}}</option>
+							</select>
+							<script type="text/javascript">
+								$(document).ready(function() {
+									$('#example-getting-started').multiselect();
+								});
+							</script>
+							
 							<select multiple>
 								<option value=''>None</option>
 								<option ng-repeat='oneStep in finalJSON.steps' value='oneStep.title'>{{oneStep.title}}</option>
@@ -335,11 +376,12 @@
 				<hr/>
 				<label>Final JSON</label>
 					<textarea id='finalJson' class="form-control finalJson" rows="6"></textarea>
-				</div>
+				
 				<a href='http://services.byu.edu/pcn/pcn-wizard-0_4.html' target='_blank'>Original PCN Tool</a><!-- TODO: Wish that there was a way to pass parameters to this-->
 				<br>
 				<button id="validate" type="button" class="btn btn-default">Validate</button>
-				<div id="validation" class="alert alert-danger" role="alert" visibility="hidden">
+				<br>
+				<div id="validation" class="alert alert-info" role="alert" visibility="hidden">
 				</div>
 
 			</div>

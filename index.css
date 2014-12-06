@@ -1,10 +1,9 @@
 html, body
 {
     width: 100%;
-	
-	  margin: 0;
-  background-color: #ababab;
-  font-family: Segoe UI;
+	margin: 0 auto;
+	background-color: #ababab;
+	font-family: Segoe UI;
 }
 body {
 
