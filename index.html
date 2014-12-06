@@ -3,23 +3,16 @@
 <head>
 	<title>Service Process Audit Assist
 	</title>
-	<meta charset="utf-8">
 	<link rel="stylesheet" href="index.css" media="screen" title="no title" charset="utf-8">
 	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular-route.min.js"></script>
 	<script src="index.js"></script>
-	<script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-	<script src="https://code.jquery.com/ui/1.11.2/jquery-ui.min.js"></script>
+	<script src="http://code.jquery.com/jquery-1.7.2.min.js"></script>
+	<script src="http://code.jquery.com/ui/1.8.21/jquery-ui.min.js"></script>
 	<script src="jquery.ui.touch-punch.min.js"></script>
 
 	<script src="validation.js"></script>
 	<script src="lib/tv4.min.js"></script>
-	
-	<link href="lib/bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">
-	<script src="lib/bootstrap/js/bootstrap.min.js"></script>
-	
-	<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
-
 	
 </head>
 <body>
@@ -29,64 +22,24 @@
 		<div class='contentWrapper'>
 			<div class='stepTabBody' ng-controller="StepController as stepCtrl">
 				<div class='fieldsetContainer'>
-					<form id="metadataForm" ng-submit='updateJSON()' novalidate class="form-horizontal" role="form">
+					<form id="metadataForm" ng-submit='updateJSON()' novalidate>
 						<div>
 							<h3>Process</h3>
-
-								<label for="InputEmail">Title</label>
-								<div class="form-group">
-									<div class="col-xs-10">
-										<input class="form-control" placeholder="Title" ng-model='finalJSON.metadata.title'>
-									</div>
-								</div>
-								<label for="inputPassword">Description</label>
-								<div class="form-group">
-									<div class="col-xs-10">
-										<textarea class="form-control" rows="3" placeholder="Description" ng-model='finalJSON.metadata.description'></textarea>
-									</div>
-								</div>
-								<label for="inputPassword" >Author</label>
-								<div class="form-group">
-									<div class="col-xs-10">
-										<input class="form-control" placeholder="Author" ng-model='finalJSON.metadata.author'>
-									</div>
-								</div>
-							
+							Title <input type="text" ng-model='finalJSON.metadata.title'>
+							Description<input type="text" ng-model='finalJSON.metadata.description'>
+							Author<input type="text" ng-model='finalJSON.metadata.author'>
 						</div>
 						<div>
-							<h4>Customer</h4>
-							<label for="inputPassword" >Name</label>
-							<div class="form-group">									
-									<div class="col-xs-10">
-										<input class="form-control" placeholder="Name" ng-model='domain1.title'>
-									</div>
-								</div>
-								<label for="inputPassword" >Subtitle</label>
-								<div class="form-group">									
-									<div class="col-xs-10">
-										<input class="form-control" placeholder="Subtitle" ng-model='domain1.subtitle'>
-									</div>
-								</div>
-							
+							<h3>Domain 1</h3>
+							Name <input type="text" ng-model='domain1.title'>
+							Subtitle <input type="text" ng-model='domain1.subtitle'>
 						</div>
 						<div>
-							<h4>Provider</h4>
-							<label for="inputPassword" >Name</label>
-							<div class="form-group">									
-									<div class="col-xs-10">
-										<input class="form-control" placeholder="Name" ng-model='domain2.title'>
-									</div>
-								</div>
-								<label for="inputPassword">Subtitle</label>
-								<div class="form-group">									
-									<div class="col-xs-10">
-										<input class="form-control" placeholder="Subtitle" ng-model='domain2.subtitle'>
-									</div>
-								</div>
-							
-
+							<h3>Domain 2</h3>
+							Name <input type="text" ng-model='domain2.title'>
+							Subtitle <input type="text" ng-model='domain2.subtitle'>
 						</div>
-						<input type="submit" value='Update'><!-- TODO: MAKE AUTO-UPDATE WITHOUT BUTTON -->
+						<input type="submit" value='Update'>
 					</form>
 				</div>
 
@@ -152,9 +105,7 @@
 					</div>
 				</div>
 
-				<form class="form-horizontal" name='addStepForm' ng-submit='addStepForm.$valid && addStep()' novalidate>
-				
-
+				<form name='addStepForm' ng-submit='addStepForm.$valid && addStep()' novalidate>
 
 					<div class=''>
 						Step name <input type='textbox' ng-model='step.title' class='stepTitleTextbox' required>
@@ -162,7 +113,7 @@
 
 					<div>
 						<fieldset class='stepProblemWrapper inputRegion' id='stepProblemFieldset'>
-							<h5>Potential Problems</h5>
+							<div>Potential Problems</div>
 							<span ng-repeat='oneProblem in tempProblems'>
 								<label>
 									{{oneProblem.name | firstUpperAndUlToSpace}}
@@ -173,41 +124,7 @@
 						</fieldset>
 
 						<fieldset class='stepControlRegionWrapper inputRegion' name='stepControlRegionFieldset'>
-							<h5>Control Region</h5>
-			
-			
-							<div id="lefttriangle">
-								<div class="triangletext tleft">Provider</div>
-							</div>
-							<div id="righttriangle">
-								<div class="triangletext tright">Customer</div>
-							</div>
-							
-							<div class="btn-group btn-group-justified" data-toggle="buttons">
-							  <label class="btn btn-primary active">
-								<input type="radio" autocomplete="off">Independent
-							  </label>
-							  <label class="btn btn-primary">
-								<input type="radio" autocomplete="off">Surrogate
-							  </label>
-							  <label class="btn btn-primary">
-								<input type="radio" autocomplete="off">Direct
-							  </label>
-							  <label class="btn btn-primary">
-								<input type="radio" autocomplete="off" checked>Both Direct
-							  </label>
-							  <label class="btn btn-primary">
-								<input type="radio" autocomplete="off">Direct
-							  </label>
-							  <label class="btn btn-primary">
-								<input type="radio" autocomplete="off">Surrogate
-							  </label>
-							  <label class="btn btn-primary">
-								<input type="radio" autocomplete="off">Independent
-							  </label>
-							</div>
-
-							
+							<div>Control Region</div>
 							<input name='stepControlRegion' type='radio' value='ProvInd' ng-model='step.controlRegion' ng-required='!step.controlRegion'>Prov Ind
 							<input name='stepControlRegion' type='radio' value='ProvSur' ng-model='step.controlRegion' ng-required='!step.controlRegion'>Prov Surr
 							<input name='stepControlRegion' type='radio' value='ProvDir' ng-model='step.controlRegion' ng-required='!step.controlRegion'>Prov Direct
@@ -218,22 +135,7 @@
 						</fieldset>
 
 						<fieldset class='stepTypeWrapper inputRegion' name='stepTypeFieldset'>
-							<h5>Step Type</h5>
-							<div class="btn-group btn-group-justified" data-toggle="buttons">
-							  <label class="btn btn-primary active">
-								<input type="radio" autocomplete="off">Process
-							  </label>
-							  <label class="btn btn-primary">
-								<input type="radio" autocomplete="off">Decision
-							  </label>
-							  <label class="btn btn-primary">
-								<input type="radio" autocomplete="off">Wait
-							  </label>
-							  <label class="btn btn-primary">
-								<input type="radio" autocomplete="off">Divergent Process
-							  </label>
-							</div>
-							
+							<div>Step Type</div>
 							<input name='stepType' type='radio' ng-model='step.type' ng-required='!step.type' value='process'>Process
 							<input name='stepType' type='radio' ng-model='step.type' ng-required='!step.type' value='decision'>Decision
 							<input name='stepType' type='radio' ng-model='step.type' ng-required='!step.type' value='wait'>Wait
@@ -241,36 +143,14 @@
 						</fieldset>
 
 						<fieldset class='inputRegion'>
-							<h5>Emphasized</h5>
+							<div>Emphasized</div>
 							<input type="checkbox" name='emphasizedCheckbox' ng-model='step.emphasized'>
 							<div ng-show='step.emphasized'>Yes</div>
 							<div ng-show='!step.emphasized'>No</div>
 						</fieldset>
 
 						<fieldset class='inputRegion'>
-							<h5>Specific Value Realization</h5>
-							
-							<div class="btn-group btn-group-justified" data-toggle="buttons">
-							  <label class="btn btn-primary active">
-								<input type="radio" autocomplete="off">
-								<span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>
-								<span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>
-							  </label>
-							  <label class="btn btn-primary">
-								<input type="radio" autocomplete="off">
-								<span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>
-							  </label>
-							  <label class="btn btn-primary">
-								<input type="radio" autocomplete="off" checked>
-								<span class="glyphicon glyphicon-minus" aria-hidden="true"></span>
-							  </label>
-							  <label class="btn btn-primary">
-								<input type="radio" autocomplete="off">
-								<span class="glyphicon glyphicon-thumbs-down" aria-hidden="true"></span>
-							  </label>
-							</div>
-							
-							
+							<div>Specific Value Realization</div>
 							<input type="radio" name='specificValueRealization' ng-model='step.value_specific' value='2'> :D :D
 							<input type="radio" name="specificValueRealization" ng-model='step.value_specific' value='1'> :D
 							<input type="radio" name="specificValueRealization" ng-model='step.value_specific' value='0'> Meh
@@ -278,7 +158,7 @@
 						</fieldset>
 
 						<fieldset class='inputRegion'>
-							<h5>Generic Value Realization</h5>
+							<div>Generic Value Realization</div>
 							<input type="radio" name='genericValueRealization' ng-model='step.value_generic' value='2'> $$
 							<input type="radio" name="genericValueRealization" ng-model='step.value_generic' value='1'> $
 							<input type="radio" name="genericValueRealization" ng-model='step.value_generic' value='0'> Meh
@@ -286,7 +166,7 @@
 						</fieldset>
 
 						<fieldset class='previousStepWrapper inputRegion' name='stepPreviousStepFieldset'>
-							<h5>Select Previous Step(s)</h5>
+							<div>Select Previous Step(s)</div>
 							<select multiple>
 								<option value=''>None</option>
 								<option ng-repeat='oneStep in finalJSON.steps' value='oneStep.title'>{{oneStep.title}}</option>
@@ -296,7 +176,6 @@
 						</fieldset>
 						<!-- TODO: CUSTOMER VALUE -->
 					</div>
-					<button type="submit" ng-disabled='addStepForm.$invalid' type="button" class="btn btn-default">Add Step</button>
 					<input type="submit" ng-disabled='addStepForm.$invalid' value='Add Step'></input>
 
 					<div class="floatEnder">
@@ -305,19 +184,61 @@
 
 				<hr/>
 				<label>Final JSON</label>
-					<textarea id='finalJson' class="form-control finalJson" rows="6"></textarea>
+				<div>
+					<textarea ng-model='finalJson' id='finalJson' class='finalJson'></textarea>
 				</div>
 				<a href='http://services.byu.edu/pcn/pcn-wizard-0_4.html' target='_blank'>Original PCN Tool</a><!-- TODO: Wish that there was a way to pass parameters to this-->
-				<br>
-				<button id="validate" type="button" class="btn btn-default">Validate</button>
-				<div id="validation" class="alert alert-danger" role="alert" visibility="hidden">
+
+			</div>
+			<div>
+				<div class='testHolder'>
+					<div class='textholder'>
+					</div>
+					<div class='textholder'>
+					</div>
+					<div class='textholder'>
+					</div>
+				</div>
+				<div class='testHolder'>
+					<div class='problemHolder'>
+						<div class='problemCheckbox'>
+							<input type='checkbox'/>
+						</div>
+						<div class='problemDescriptionToggle'>v
+						</div>
+						<input type='text' class='problemDescription' value="This is the problem we're talking about!'">
+						</input>
+					</div>
+					<div class='problemHolder'>
+						<div class='problemCheckbox'>
+							<input type='checkbox'/>
+						</div>
+						<div class='problemDescriptionToggle'>v
+						</div>
+						<input type='text' class='problemDescription' value="This is the problem we're talking about!'">
+						</input>
+					</div>
+				</div>
+				<div class='testHolder'>
+
+				</div>
+				<div class='testHolder'>
+
+				</div>
+				<div class='testHolder'>
+
+				</div>
+				<div class='testHolder'>
+
 				</div>
 
 			</div>
 
-
 		</div>
-	</div>
 
+	</div>
+	<input id="validate" type="button" value="Validate"/>
+	<div id="validation">
+	</div>
 </body>
 </html>
