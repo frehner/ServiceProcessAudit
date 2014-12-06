@@ -29,59 +29,53 @@
 		<div class='contentWrapper'>
 			<div class='stepTabBody' ng-controller="StepController as stepCtrl">
 				<div class='fieldsetContainer'>
-					<form id="metadataForm" ng-submit='updateJSON()' novalidate class="form-horizontal" role="form">
+				
+					<form id="metadataForm" ng-submit='updateJSON()' novalidate role="form">					
 						<div>
 							<h3>Process</h3>
+								
+								<div class="form-group">
+									<label for="InputEmail">Title</label>
+									<input class="form-control" placeholder="Title" ng-model='finalJSON.metadata.title'>
 
-								<label for="InputEmail">Title</label>
-								<div class="form-group">
-									<div class="col-xs-10">
-										<input class="form-control" placeholder="Title" ng-model='finalJSON.metadata.title'>
-									</div>
 								</div>
-								<label for="inputPassword">Description</label>
+								
 								<div class="form-group">
-									<div class="col-xs-10">
-										<textarea class="form-control" rows="3" placeholder="Description" ng-model='finalJSON.metadata.description'></textarea>
-									</div>
+									<label for="inputPassword">Description</label>
+									<textarea class="form-control" rows="3" placeholder="Description" ng-model='finalJSON.metadata.description'></textarea>
 								</div>
-								<label for="inputPassword" >Author</label>
+								
 								<div class="form-group">
-									<div class="col-xs-10">
-										<input class="form-control" placeholder="Author" ng-model='finalJSON.metadata.author'>
-									</div>
+									<label for="inputPassword" >Author</label>
+									<input class="form-control" placeholder="Author" ng-model='finalJSON.metadata.author'>
 								</div>
 							
 						</div>
 						<div>
 							<h4>Customer</h4>
-							<label for="inputPassword" >Name</label>
-							<div class="form-group">									
-									<div class="col-xs-10">
-										<input class="form-control" placeholder="Name" ng-model='domain1.title'>
-									</div>
-								</div>
-								<label for="inputPassword" >Subtitle</label>
+							
 								<div class="form-group">									
-									<div class="col-xs-10">
-										<input class="form-control" placeholder="Subtitle" ng-model='domain1.subtitle'>
-									</div>
+									<label for="inputPassword" >Name</label>
+									<input class="form-control" placeholder="Name" ng-model='domain1.title'>
+								</div>
+								
+								<div class="form-group">									
+									<label for="inputPassword" >Subtitle</label>
+									<input class="form-control" placeholder="Subtitle" ng-model='domain1.subtitle'>
 								</div>
 							
 						</div>
 						<div>
 							<h4>Provider</h4>
-							<label for="inputPassword" >Name</label>
-							<div class="form-group">									
-									<div class="col-xs-10">
-										<input class="form-control" placeholder="Name" ng-model='domain2.title'>
-									</div>
+							
+								<div class="form-group">
+									<label for="inputPassword" >Name</label>							
+									<input class="form-control" placeholder="Name" ng-model='domain2.title'>
 								</div>
-								<label for="inputPassword">Subtitle</label>
+								
 								<div class="form-group">									
-									<div class="col-xs-10">
-										<input class="form-control" placeholder="Subtitle" ng-model='domain2.subtitle'>
-									</div>
+									<label for="inputPassword">Subtitle</label>
+									<input class="form-control" placeholder="Subtitle" ng-model='domain2.subtitle'>
 								</div>
 							
 
