@@ -6,6 +6,7 @@ body {
   margin: 0;
   background-color: #ababab;
   font-family: Segoe UI;
+  max-width: 500px;
 }
 .pageWrapper {
 
@@ -129,6 +130,7 @@ div.stepDescription {
   width: 100%;
   min-height: 60px;
   /*min-width: 320px;*/
+  max-width: 500px; /* We don't need this to be the full page- mobile friendly*/
   background-color: #bdbdc2;
 
 }
