@@ -10,6 +10,10 @@
 	<script src="http://code.jquery.com/jquery-1.7.2.min.js"></script>
 	<script src="http://code.jquery.com/ui/1.8.21/jquery-ui.min.js"></script>
 	<script src="jquery.ui.touch-punch.min.js"></script>
+
+	<script src="validation.js"></script>
+	<script src="lib/tv4.min.js"></script>
+	
 </head>
 <body>
 	<div class='pageWrapper'>
@@ -181,7 +185,7 @@
 				<hr/>
 				<label>Final JSON</label>
 				<div>
-					<textarea ng-model='finalJson' class='finalJson'></textarea>
+					<textarea ng-model='finalJson' id='finalJson' class='finalJson'></textarea>
 				</div>
 				<a href='http://services.byu.edu/pcn/pcn-wizard-0_4.html' target='_blank'>Original PCN Tool</a><!-- TODO: Wish that there was a way to pass parameters to this-->
 
@@ -232,6 +236,9 @@
 
 		</div>
 
+	</div>
+	<input id="validate" type="button" value="Validate"/>
+	<div id="validation">
 	</div>
 </body>
 </html>
