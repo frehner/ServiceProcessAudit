@@ -157,8 +157,41 @@
 					</div>
 
 					<div>
+					
+						
 						<fieldset class='stepProblemWrapper inputRegion' id='stepProblemFieldset'>
-							<h5>Potential Problems</h5>
+							<h4>Potential Problems</h4>
+								<div data-toggle="buttons">
+									<div class="input-group">
+									  <span class="input-group-addon  btn btn-primary">
+										<div type="button" style="width: 75px">Inconvenient</div>
+									  </span>
+									  <input type="text" class="form-control">
+									</div>
+									<br>
+									<div class="input-group">
+									  <span class="input-group-addon  btn btn-primary">
+										<div type="button" style="width: 75px">Confusing</div>
+									  </span>
+									  <input type="text" class="form-control">
+									</div>
+									<br>
+									<div class="input-group">
+									  <span class="input-group-addon  btn btn-primary">
+										<div type="button" style="width: 75px">Difficult</div>
+									  </span>
+									  <input type="text" class="form-control">
+									</div>
+									<br>
+									<div class="input-group">
+									  <span class="input-group-addon  btn btn-primary">
+										<div type="button" style="width: 75px">Likely to fail</div>
+									  </span>
+									  <input type="text" class="form-control">
+									</div>
+								</div>
+						
+						
 							<span ng-repeat='oneProblem in tempProblems'>
 								<label>
 									{{oneProblem.name | firstUpperAndUlToSpace}}
@@ -169,7 +202,7 @@
 						</fieldset>
 
 						<fieldset class='stepControlRegionWrapper inputRegion' name='stepControlRegionFieldset'>
-							<h5>Control Region</h5>
+							<h4>Control Region</h4>
 			
 			
 							<div id="lefttriangle">
@@ -180,7 +213,7 @@
 							</div>
 							
 							<div class="btn-group btn-group-justified" data-toggle="buttons">
-							  <label class="btn btn-primary active">
+							  <label class="btn btn-primary">
 								<input type="radio" autocomplete="off">Independent
 							  </label>
 							  <label class="btn btn-primary">
@@ -214,9 +247,9 @@
 						</fieldset>
 
 						<fieldset class='stepTypeWrapper inputRegion' name='stepTypeFieldset'>
-							<h5>Step Type</h5>
+							<h4>Step Type</h4>
 							<div class="btn-group btn-group-justified" data-toggle="buttons">
-							  <label class="btn btn-primary active">
+							  <label class="btn btn-primary">
 								<input type="radio" autocomplete="off">Process
 							  </label>
 							  <label class="btn btn-primary">
@@ -237,26 +270,26 @@
 						</fieldset>
 
 						<fieldset class='inputRegion'>
-							<h5>Emphasized</h5>
+							<h4>Emphasized</h4>
 							<input type="checkbox" name='emphasizedCheckbox' ng-model='step.emphasized'>
 							<div ng-show='step.emphasized'>Yes</div>
 							<div ng-show='!step.emphasized'>No</div>
 						</fieldset>
 
 						<fieldset class='inputRegion'>
-							<h5>Specific Value Realization</h5>
+							<h4>Specific Value Realization</h4>
 							
 							<div class="btn-group btn-group-justified" data-toggle="buttons">
+							  <label class="btn btn-primary">
+								<input type="radio" autocomplete="off">
+								<span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>
+								<span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>
+							  </label>
+							  <label class="btn btn-primary">
+								<input type="radio" autocomplete="off">
+								<span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>
+							  </label>
 							  <label class="btn btn-primary active">
-								<input type="radio" autocomplete="off">
-								<span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>
-								<span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>
-							  </label>
-							  <label class="btn btn-primary">
-								<input type="radio" autocomplete="off">
-								<span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>
-							  </label>
-							  <label class="btn btn-primary">
 								<input type="radio" autocomplete="off" checked>
 								<span class="glyphicon glyphicon-minus" aria-hidden="true"></span>
 							  </label>
@@ -274,7 +307,7 @@
 						</fieldset>
 
 						<fieldset class='inputRegion'>
-							<h5>Generic Value Realization</h5>
+							<h4>Generic Value Realization</h4>
 							<input type="radio" name='genericValueRealization' ng-model='step.value_generic' value='2'> $$
 							<input type="radio" name="genericValueRealization" ng-model='step.value_generic' value='1'> $
 							<input type="radio" name="genericValueRealization" ng-model='step.value_generic' value='0'> Meh
@@ -282,7 +315,7 @@
 						</fieldset>
 
 						<fieldset class='previousStepWrapper inputRegion' name='stepPreviousStepFieldset'>
-							<h5>Select Previous Step(s)</h5>
+							<h4>Select Previous Step(s)</h4>
 							<select multiple>
 								<option value=''>None</option>
 								<option ng-repeat='oneStep in finalJSON.steps' value='oneStep.title'>{{oneStep.title}}</option>
