@@ -1,3 +1,7 @@
+html, body
+{
+    width: 100%;
+}
 body {
   margin: 0;
   background-color: #ababab;
@@ -122,7 +126,7 @@ div.stepDescription {
   margin: 4px 2px 4px 2px;
   padding: 5px;
   padding-right: 8px;
-  width: 340px;
+  width: 100%;
   min-height: 60px;
   /*min-width: 320px;*/
   background-color: #bdbdc2;
@@ -291,4 +295,43 @@ textarea.finalJson:focus {
   .problemDescription {
     display: none;
   }
+}
+
+#lefttriangle {
+    width: 50%;
+    height: 50px;
+    left: 0px;
+    top: 0px;
+    background: linear-gradient(to right top, #000099 50%, transparent 50%);
+	float: left;
+	position: relative;
+}
+#righttriangle {
+    width: 50%;
+    height: 50px;
+    left: 0px;
+    top: 0px;
+    background: linear-gradient(to left top, #000099 50%, transparent 50%);
+	float: right;
+	position: relative;
+}
+.triangletext {
+    height: 30px;
+	position:absolute;
+	bottom:0px;
+	color: #F2F2F2;
+	font-size: x-large;
+
+}
+
+.tleft {
+	left: 5px;
+}
+
+.tright {
+	right:5px;
+}
+
+h1 {
+	color: white;
 }
