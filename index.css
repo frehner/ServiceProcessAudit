@@ -7,11 +7,11 @@ body {
 
 }
 .tabHeader {
-  background-color: #393939;
+  background-color: #0066FF; /* This is the color of the top header */
   height: 49px;
 }
 .contentWrapper {
-  background-color: #ababab;
+  background-color: #FFFFFF; /* This is the color of the overall background */
   padding: 6px;
 }
 
@@ -57,7 +57,7 @@ fieldset.step {
   margin: 12px;
   min-height: 26px;
   box-shadow: 2px 2px 4px #676767;
-
+  max-width: 300px;
   transition: all 5s;
 }
 fieldset.step:hover{
@@ -125,9 +125,9 @@ div.stepDescription {
   width: 340px;
   min-height: 60px;
   /*min-width: 320px;*/
-  background-color: #bdbdc2;
-
+  background-color: #0066FF; /* Sidebar color*/
 }
+
 .stepProblemWrapper {
   border-left: 3px solid #df2301;
 }
@@ -146,6 +146,33 @@ input[type='textbox'].stepDescription {
   background-color: #878787;
   color: white;
   min-width: 200px;
+}
+
+input[type='text'] {
+  max-width:300px;
+}
+
+.ui-btn.ui-shadow.ui-btn-corner-all.ui-submit.ui-btn-up-c {
+max-width:300px;
+}
+
+
+/*This is something that I was playing with to change all of the button sizes to be larger, but unfortunately it isn't applying to everything... */
+
+input[type='radio'] {
+  background: url(http://www.thecssninja.com/demo/css_custom-forms/gr_custom-inputs.png) 0 -1px no-repeat;
+  border:none;
+  border-bottom: 1px solid #c7c7c7;
+  background-color: #878787;
+  color: white;
+  min-width: 200px;
+  height: 16px;
+  padding: 0 0 0 18px;
+}
+
+#ThISISTheTALE input[type='radio']{
+height:16px;
+margin-top: -10px;
 }
 
 /* http://stackoverflow.com/a/9705712/1963978 */
@@ -206,6 +233,7 @@ textarea.finalJson {
   border:none;
   background-color:#dfdfdf;
   overflow:auto;
+  max-width: 500px;
   transition: all 200ms;
 }
 
@@ -223,11 +251,13 @@ textarea.finalJson:focus {
 
 * {
   border-radius: 2px;
+  text-shadow: none; /* This gets rid of the annoying shadow on the text*/
 }
 .testHolder {
   height:65px;
   width: 100%;
-  background-color:#dd2900;
+  max-width: 500px;
+  background-color:#474747; /* This is the base Error Message area */
   margin: 12px 16px 12px 7px;
   -webkit-transition: all 0.6s ease-out;
     -moz-transition: all 0.6s ease-out;
