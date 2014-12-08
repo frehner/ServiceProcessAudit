@@ -10,7 +10,7 @@
 	<script src="index.js"></script>
 	<script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
 	<script src="https://code.jquery.com/ui/1.11.2/jquery-ui.min.js"></script>
-	<script src="jquery.ui.touch-punch.min.js"></script>
+	<!-- // <script src="jquery.ui.touch-punch.min.js"></script> -->
 
 	<script src="validation.js"></script>
 	<script src="lib/tv4.min.js"></script>
@@ -33,9 +33,15 @@
 			<div class='stepTabBody' ng-controller="StepController as stepCtrl">
 				<div class='fieldsetContainer'>
 
-					<form id="metadataForm" ng-submit='updateJSON()' novalidate role="form">
-						<div>
-							<h3>Process</h3>
+
+					<h3>
+						<label>
+							<input type='checkbox' name='showProcess' ng-model='showProcessData'> Show Process Data
+						</label>
+					</h3>
+
+						<form id="metadataForm" ng-submit='updateJSON()' novalidate role="form" ng-show='showProcessData'>
+							<div>
 
 								<div class="form-group">
 									<label for="InputEmail">Title</label>
@@ -89,7 +95,7 @@
 
 				<div class='fieldsetContainer' ng-repeat="singleStep in finalJSON.steps" ng-animate="{ enter: 'animation-enter', leave: 'animation-leave'}">
 					<fieldset class='step' >
-						<div class='stepClearButton'>
+						<div class='stepClearButton' ng-click='removeStep(singleStep)'>
 							X
 						</div>
 						<span class='stepClearButton' ng-click='editStep(singleStep)'>

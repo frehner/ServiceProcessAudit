@@ -94,7 +94,16 @@
           }
         }
       }
+    };
 
+    $scope.removeStep = function(removedStep) {
+      var lengthOfSteps = $scope.finalJSON.steps.length;
+      for (var i = 0; i < lengthOfSteps; i++) {
+        if($scope.finalJSON.steps[i] === removedStep){
+          $scope.finalJSON.steps.splice(i,1);
+          break;
+        }
+      }
     };
 
     //looks for additions to the steps array
