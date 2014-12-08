@@ -14,15 +14,15 @@
 
 	<script src="validation.js"></script>
 	<script src="lib/tv4.min.js"></script>
-	
+
 	<link href="lib/bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">
-	<script src="lib/bootstrap/js/bootstrap.min.js"></script>
-	
+	<!-- // <script src="lib/bootstrap/js/bootstrap.min.js"></script> -->
+
 	<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
 
 	<script type="text/javascript" src="lib/bootstrap-multiselect/js/bootstrap-multiselect.js"></script>
 	<link rel="stylesheet" href="lib/boostrap-multiselect/css/bootstrap-multiselect.css" type="text/css"/>
-	
+
 	<meta name="viewport" content="width=600,initial-scale=1">
 </head>
 <body>
@@ -32,59 +32,58 @@
 		<div class='contentWrapper'>
 			<div class='stepTabBody' ng-controller="StepController as stepCtrl">
 				<div class='fieldsetContainer'>
-				
-					<form id="metadataForm" ng-submit='updateJSON()' novalidate role="form">					
+
+					<form id="metadataForm" ng-submit='updateJSON()' novalidate role="form">
 						<div>
 							<h3>Process</h3>
-								
+
 								<div class="form-group">
 									<label for="InputEmail">Title</label>
 									<input class="form-control" placeholder="Title" ng-model='finalJSON.metadata.title'>
 
 								</div>
-								
+
 								<div class="form-group">
 									<label for="inputPassword">Description</label>
 									<textarea class="form-control" rows="3" placeholder="Description" ng-model='finalJSON.metadata.description'></textarea>
 								</div>
-								
+
 								<div class="form-group">
 									<label for="inputPassword" >Author</label>
 									<input class="form-control" placeholder="Author" ng-model='finalJSON.metadata.author'>
 								</div>
-							
+
 						</div>
 						<div>
 							<h4>Customer</h4>
-							
-								<div class="form-group">									
+
+								<div class="form-group">
 									<label for="inputPassword" >Name</label>
 									<input class="form-control" placeholder="Name" ng-model='domain1.title'>
 								</div>
-								
-								<div class="form-group">									
+
+								<div class="form-group">
 									<label for="inputPassword" >Subtitle</label>
 									<input class="form-control" placeholder="Subtitle" ng-model='domain1.subtitle'>
 								</div>
-							
+
 						</div>
 						<div>
 							<h4>Provider</h4>
-							
+
 								<div class="form-group">
-									<label for="inputPassword" >Name</label>							
+									<label for="inputPassword" >Name</label>
 									<input class="form-control" placeholder="Name" ng-model='domain2.title'>
 								</div>
-								
-								<div class="form-group">									
+
+								<div class="form-group">
 									<label for="inputPassword">Subtitle</label>
 									<input class="form-control" placeholder="Subtitle" ng-model='domain2.subtitle'>
 								</div>
-							
+
 
 						</div>
 						<button type="submit" class="btn btn-default">Update</button>
-						<input type="submit" value='Update'><!-- TODO: MAKE AUTO-UPDATE WITHOUT BUTTON -->
 					</form>
 				</div>
 
@@ -151,7 +150,7 @@
 				</div>
 
 				<form name='addStepForm' ng-submit='addStepForm.$valid && addStep()' novalidate>
-				
+
 
 
 					<div class="form-group">
@@ -160,8 +159,8 @@
 					</div>
 
 					<div>
-					
-						
+
+
 						<fieldset class='stepProblemWrapper inputRegion' id='stepProblemFieldset'>
 							<h4>Potential Problems</h4>
 								<div data-toggle="buttons">
@@ -193,8 +192,8 @@
 									  <input type="text" class="form-control">
 									</div>
 								</div>
-						
-						
+
+
 							<span ng-repeat='oneProblem in tempProblems'>
 								<label>
 									{{oneProblem.name | firstUpperAndUlToSpace}}
@@ -206,148 +205,124 @@
 
 						<fieldset class='stepControlRegionWrapper inputRegion' name='stepControlRegionFieldset'>
 							<h4>Control Region</h4>
-			
-			
+
+
 							<div id="lefttriangle">
 								<div class="triangletext tleft">Provider</div>
 							</div>
 							<div id="righttriangle">
 								<div class="triangletext tright">Customer</div>
 							</div>
-							
+
 							<div class="btn-group btn-group-justified" data-toggle="buttons">
-							  <label class="btn btn-primary">
-								<input type="radio" autocomplete="off">Independent
-							  </label>
-							  <label class="btn btn-primary">
-								<input type="radio" autocomplete="off">Surrogate
-							  </label>
-							  <label class="btn btn-primary">
-								<input type="radio" autocomplete="off">Direct
-							  </label>
-							  <label class="btn btn-primary">
-								<input type="radio" autocomplete="off" checked>Both Direct
-							  </label>
-							  <label class="btn btn-primary">
-								<input type="radio" autocomplete="off">Direct
-							  </label>
-							  <label class="btn btn-primary">
-								<input type="radio" autocomplete="off">Surrogate
-							  </label>
-							  <label class="btn btn-primary">
-								<input type="radio" autocomplete="off">Independent
-							  </label>
+								<label class="btn btn-primary {{step.controlRegion == 'ProvInd' ? 'active' : ''}}">
+									<input type='radio' ng-model='step.controlRegion' name='stepControlRegion' value='ProvInd'>Independent
+								</label>
+								<label class="btn btn-primary {{step.controlRegion == 'ProvSur' ? 'active' : ''}}">
+									<input type="radio" ng-model='step.controlRegion' name='stepControlRegion' value='ProvSur'>Surrogate
+								</label>
+								<label class="btn btn-primary {{step.controlRegion == 'ProvDir' ? 'active' : ''}}">
+									<input type="radio" ng-model='step.controlRegion' name='stepControlRegion' value='ProvDir'>Direct
+								</label>
+								<label class="btn btn-primary {{step.controlRegion == 'BothDir' ? 'active' : ''}}">
+									<input type="radio" ng-model='step.controlRegion' name='stepControlRegion' value='BothDir' checked>Both Direct
+								</label>
+								<label class="btn btn-primary {{step.controlRegion == 'CustDir' ? 'active' : ''}}">
+									<input type="radio" ng-model='step.controlRegion' name='stepControlRegion' value='CustDir'>Direct
+								</label>
+								<label class="btn btn-primary {{step.controlRegion == 'CustSur' ? 'active' : ''}}">
+									<input type="radio" ng-model='step.controlRegion' name='stepControlRegion' value='CustSur'>Surrogate
+								</label>
+								<label class="btn btn-primary {{step.controlRegion == 'CustInd' ? 'active' : ''}}">
+									<input type="radio" ng-model='step.controlRegion' name='stepControlRegion' value='CustInd'>Independent
+								</label>
 							</div>
 
-							
-							<input name='stepControlRegion' type='radio' value='ProvInd' ng-model='step.controlRegion' ng-required='!step.controlRegion'>Prov Ind
-							<input name='stepControlRegion' type='radio' value='ProvSur' ng-model='step.controlRegion' ng-required='!step.controlRegion'>Prov Surr
-							<input name='stepControlRegion' type='radio' value='ProvDir' ng-model='step.controlRegion' ng-required='!step.controlRegion'>Prov Direct
-							<input name='stepControlRegion' type='radio' value='BothDir' ng-model='step.controlRegion' ng-required='!step.controlRegion'>Both Direct
-							<input name='stepControlRegion' type='radio' value='CustDir' ng-model='step.controlRegion' ng-required='!step.controlRegion'>Cust Direct
-							<input name='stepControlRegion' type='radio' value='CustSur' ng-model='step.controlRegion' ng-required='!step.controlRegion'>Cust Surr
-							<input name='stepControlRegion' type='radio' value='CustInd' ng-model='step.controlRegion' ng-required='!step.controlRegion'>Cust Ind
 						</fieldset>
 
 						<fieldset class='stepTypeWrapper inputRegion' name='stepTypeFieldset'>
 							<h4>Step Type</h4>
 							<div class="btn-group btn-group-justified" data-toggle="buttons">
-							  <label class="btn btn-primary">
-								<input type="radio" autocomplete="off">Process
-							  </label>
-							  <label class="btn btn-primary">
-								<input type="radio" autocomplete="off">Decision
-							  </label>
-							  <label class="btn btn-primary">
-								<input type="radio" autocomplete="off">Wait
-							  </label>
-							  <label class="btn btn-primary">
-								<input type="radio" autocomplete="off">Divergent Process
-							  </label>
+								<label class="btn btn-primary {{step.type == 'process' ? 'active' : ''}}">
+									<input type="radio" autocomplete="off" ng-model='step.type' name='stepType' value='process'>Process
+								</label>
+								<label class="btn btn-primary {{step.type == 'decision' ? 'active' : ''}}">
+									<input type="radio" autocomplete="off" ng-model='step.type' name='stepType' value='decision'>Decision
+								</label>
+								<label class="btn btn-primary {{step.type == 'wait' ? 'active' : ''}}">
+									<input type="radio" autocomplete="off" ng-model='step.type' name='stepType' value='wait'>Wait
+								</label>
+								<label class="btn btn-primary {{step.type == 'divergent_process' ? 'active' : ''}}">
+									<input type="radio" autocomplete="off" ng-model='step.type' name='stepType' value='divergent_process'>Divergent Process
+								</label>
 							</div>
-							
-							<input name='stepType' type='radio' ng-model='step.type' ng-required='!step.type' value='process'>Process
-							<input name='stepType' type='radio' ng-model='step.type' ng-required='!step.type' value='decision'>Decision
-							<input name='stepType' type='radio' ng-model='step.type' ng-required='!step.type' value='wait'>Wait
-							<input name='stepType' type='radio' ng-model='step.type' ng-required='!step.type' value='divergent_process'>Divergent Process
-						</fieldset>
 
-						<fieldset class='inputRegion'>
-							<h4>Emphasized</h4>
-							
-							<input type="checkbox" name='emphasizedCheckbox' ng-model='step.emphasized'>
-							<div ng-show='step.emphasized'>Yes</div>
-							<div ng-show='!step.emphasized'>No</div>
 						</fieldset>
 
 						<fieldset class='inputRegion'>
 							<h4>Specific Value Realization</h4>
-							
+
 							<div class="btn-group btn-group-justified" data-toggle="buttons">
-							  <label class="btn btn-primary">
-								<input type="radio" autocomplete="off">
-								<span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>
-								<span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>
-							  </label>
-							  <label class="btn btn-primary">
-								<input type="radio" autocomplete="off">
-								<span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>
-							  </label>
-							  <label class="btn btn-primary active">
-								<input type="radio" autocomplete="off" checked>
-								<span class="glyphicon glyphicon-minus" aria-hidden="true"></span>
-							  </label>
-							  <label class="btn btn-primary">
-								<input type="radio" autocomplete="off">
-								<span class="glyphicon glyphicon-thumbs-down" aria-hidden="true"></span>
-							  </label>
+								<label class="btn btn-primary {{step.value_specific == '2' ? 'active' : ''}}">
+									<input type="radio" ng-model='step.value_specific' value='2'>
+									<span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>
+									<span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>
+								</label>
+								<label class="btn btn-primary {{step.value_specific == '1' ? 'active' : ''}}">
+									<input type="radio" ng-model='step.value_specific' value='1'>
+									<span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>
+								</label>
+								<label class="btn btn-primary {{step.value_specific == '0' ? 'active' : ''}}">
+									<input type="radio" ng-model='step.value_specific' value='0' checked>
+									<span class="glyphicon glyphicon-minus" aria-hidden="true"></span>
+								</label>
+								<label class="btn btn-primary {{step.value_specific == '-1' ? 'active' : ''}}">
+									<input type="radio" ng-model='step.value_specific' value='-1'>
+									<span class="glyphicon glyphicon-thumbs-down" aria-hidden="true"></span>
+								</label>
 							</div>
-							
-							
-							<input type="radio" name='specificValueRealization' ng-model='step.value_specific' value='2'> :D :D
-							<input type="radio" name="specificValueRealization" ng-model='step.value_specific' value='1'> :D
-							<input type="radio" name="specificValueRealization" ng-model='step.value_specific' value='0'> Meh
-							<input type="radio" name="specificValueRealization" ng-model='step.value_specific' value='-1'> :(
 						</fieldset>
 
 						<fieldset class='inputRegion'>
 							<h4>Generic Value Realization</h4>
 								<div class="btn-group btn-group-justified" data-toggle="buttons">
-								  <label class="btn btn-primary">
-									<input type="radio" autocomplete="off">
-									<span class="glyphicon glyphicon-usd" aria-hidden="true"></span>
-									<span class="glyphicon glyphicon-usd" aria-hidden="true"></span>
+								  <label class="btn btn-primary {{step.value_generic == '2' ? 'active' : ''}}">
+										<input type="radio" ng-model='step.value_generic' value='2'>
+										<span class="glyphicon glyphicon-usd" aria-hidden="true"></span>
+										<span class="glyphicon glyphicon-usd" aria-hidden="true"></span>
 								  </label>
-								  <label class="btn btn-primary">
-									<input type="radio" autocomplete="off">
-									<span class="glyphicon glyphicon-usd" aria-hidden="true"></span>
+								  <label class="btn btn-primary {{step.value_generic == '1' ? 'active' : ''}}">
+										<input type="radio" ng-model='step.value_generic' value='1'>
+										<span class="glyphicon glyphicon-usd" aria-hidden="true"></span>
 								  </label>
-								  <label class="btn btn-primary active">
-									<input type="radio" autocomplete="off" checked>
-									<span class="glyphicon glyphicon-minus" aria-hidden="true"></span>
+								  <label class="btn btn-primary {{step.value_generic == '0' ? 'active' : ''}}">
+										<input type="radio" ng-model='step.value_generic' value='0' checked>
+										<span class="glyphicon glyphicon-minus" aria-hidden="true"></span>
 								  </label>
-								  <label class="btn btn-primary">
-									<input type="radio" autocomplete="off">
-									<span class="glyphicon glyphicon-minus" aria-hidden="true"></span>
-									<span class="glyphicon glyphicon-usd" aria-hidden="true"></span>
+								  <label class="btn btn-primary {{step.value_generic == '-1' ? 'active' : ''}}">
+										<input type="radio" ng-model='step.value_generic' value='-1'>
+										<span class="glyphicon glyphicon-minus" aria-hidden="true"></span>
+										<span class="glyphicon glyphicon-usd" aria-hidden="true"></span>
 								  </label>
-								  <label class="btn btn-primary">
-									<input type="radio" autocomplete="off">
-									<span class="glyphicon glyphicon-minus" aria-hidden="true"></span>
-									<span class="glyphicon glyphicon-usd" aria-hidden="true"></span>
-									<span class="glyphicon glyphicon-usd" aria-hidden="true"></span>
+								  <label class="btn btn-primary {{step.value_generic == '-2' ? 'active' : ''}}">
+										<input type="radio" ng-model='step.value_generic' value='-2'>
+										<span class="glyphicon glyphicon-minus" aria-hidden="true"></span>
+										<span class="glyphicon glyphicon-usd" aria-hidden="true"></span>
+										<span class="glyphicon glyphicon-usd" aria-hidden="true"></span>
 								  </label>
 								</div>
-							
-							<input type="radio" name='genericValueRealization' ng-model='step.value_generic' value='2'> $$
-							<input type="radio" name="genericValueRealization" ng-model='step.value_generic' value='1'> $
-							<input type="radio" name="genericValueRealization" ng-model='step.value_generic' value='0'> Meh
-							<input type="radio" name="genericValueRealization" ng-model='step.value_generic' value='-1'> -$
+
+						</fieldset>
+
+						<fieldset class='inputRegion'>
+							<h4>Emphasized</h4>
+							<input type="checkbox" name='emphasizedCheckbox' ng-model='step.emphasized'>
+							{{step.emphasized ? 'Yes':'No'}}
 						</fieldset>
 
 						<fieldset class='previousStepWrapper inputRegion' name='stepPreviousStepFieldset'>
 							<h4>Select Previous Step(s)</h4>
-							
+
 							<select id="example-getting-started" multiple="multiple">
 								<option value="">None</option>
 								<option ng-repeat='oneStep in finalJSON.steps' value='oneStep.title'>{{oneStep.title}}</option>
@@ -357,7 +332,7 @@
 									$('#example-getting-started').multiselect();
 								});
 							</script>
-							
+
 							<select multiple>
 								<option value=''>None</option>
 								<option ng-repeat='oneStep in finalJSON.steps' value='oneStep.title'>{{oneStep.title}}</option>
@@ -376,8 +351,8 @@
 
 				<hr/>
 				<label>Final JSON</label>
-					<textarea id='finalJson' class="form-control finalJson" rows="6"></textarea>
-				
+					<textarea select-on-click id='finalJson' class="form-control finalJson" rows="6" ng-model='finalJson'></textarea>
+
 				<a href='http://services.byu.edu/pcn/pcn-wizard-0_4.html' target='_blank'>Original PCN Tool</a><!-- TODO: Wish that there was a way to pass parameters to this-->
 				<br>
 				<button id="validate" type="button" class="btn btn-default">Validate</button>
