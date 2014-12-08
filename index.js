@@ -10,8 +10,10 @@
     $scope.finalJSON.steps = [];
 
     $scope.step = {};
-    $scope.domain1 = {};
-    $scope.domain2 = {};
+    $scope.Customer_domain = {};
+    $scope.Provider_domain = {};
+
+    $scope.tempPreviousSteps = [];
 
     $scope.isAnEdit = false;
     $scope.editedStepLocation = 0;
@@ -21,10 +23,66 @@
     //adds a step then cleans the form
     $scope.addStep = function(){
       $scope.step.problems = [];
+      $scope.step.predecessors = [];
+      $scope.step.domain = {};
+
+      if ($scope.tempDomain) {
+        switch ($scope.tempDomain) {
+        case 'ProvInd':
+          $scope.step.domain.id = 'Provider_domain';
+          $scope.step.domain.region = {};
+          $scope.step.domain.region.type = "independent";
+          $scope.step.domain.region.with_domain = "";
+          break;
+        case 'ProvSur':
+          $scope.step.domain.id = 'Provider_domain';
+          $scope.step.domain.region = {};
+          $scope.step.domain.region.type = "surrogate";
+          $scope.step.domain.region.with_domain = "Customer_domain";
+          break;
+        case 'ProvDir':
+          $scope.step.domain.id = 'Provider_domain';
+          $scope.step.domain.region = {};
+          $scope.step.domain.region.type = "direct_leading";
+          $scope.step.domain.region.with_domain = "Customer_domain";
+          break;
+        case 'BothDir':
+          $scope.step.domain.id = 'Provider_domain';
+          $scope.step.domain.region = {};
+          $scope.step.domain.region.type = "direct_shared";
+          $scope.step.domain.region.with_domain = "Customer_domain";
+          break;
+        case 'CustDir':
+          $scope.step.domain.id = 'Customer_domain';
+          $scope.step.domain.region = {};
+          $scope.step.domain.region.type = "direct_leading";
+          $scope.step.domain.region.with_domain = "Provider_domain";
+          break;
+        case 'CustSur':
+          $scope.step.domain.id = 'Customer_domain';
+          $scope.step.domain.region = {};
+          $scope.step.domain.region.type = "surrogate";
+          $scope.step.domain.region.with_domain = "Provider_domain";
+          break;
+        case 'CustInd':
+          $scope.step.domain.id = 'Customer_domain';
+          $scope.step.domain.region = {};
+          $scope.step.domain.region.type = "independent";
+          $scope.step.domain.region.with_domain = "";
+          break;
+        default:
+
+        }
+      }
+
       angular.forEach($scope.tempProblems, function(tempProb){
         if (tempProb.selected) {
           $scope.step.problems.push({'type':tempProb.name, 'description':tempProb.description});
         }
+      });
+
+      angular.forEach($scope.tempPreviousSteps, function(prevStep){
+        $scope.step.predecessors.push({'id':prevStep, 'type':'normal_relationship'});
       });
 
       if ($scope.isAnEdit) {
@@ -38,7 +96,7 @@
     };
 
     $scope.updateJSON = function(){
-      $scope.finalJSON.domains = [$scope.domain1, $scope.domain2];
+      $scope.finalJSON.domains = [$scope.Customer_domain, $scope.Provider_domain];
       $scope.finalJson = angular.toJson($scope.finalJSON);
     };
 
@@ -50,6 +108,7 @@
         tempProb.description = "";
         tempProb.selected = false;
       });
+      $scope.tempDomain = '';
 
     };
 
@@ -66,7 +125,6 @@
       }
 
       $scope.step.title = editedStep.title;
-      $scope.step.controlRegion = editedStep.controlRegion;
       $scope.step.type = editedStep.type;
       $scope.step.value_specific = editedStep.value_specific;
       $scope.step.value_generic = editedStep.value_generic;
@@ -95,6 +153,39 @@
           default:
             break;
           }
+        }
+      }
+
+      if(editedStep.domain){
+        if (editedStep.domain.id == 'Provider_domain') {
+          switch (editedStep.domain.region.type) {
+          case 'independent':
+            $scope.tempDomain = 'ProvInd';
+            break;
+          case 'surrogate':
+            $scope.tempDomain = 'ProvSur';
+            break;
+          case 'direct_leading':
+            $scope.tempDomain = 'ProvDir';
+            break;
+          case 'direct_shared':
+            $scope.tempDomain = 'BothDir';
+            break;
+          default:
+          }
+        } else {
+          switch (editedStep.domain.region.type) {
+            case 'independent':
+              $scope.tempDomain = 'CustInd';
+              break;
+            case 'surrogate':
+              $scope.tempDomain = 'CustSur';
+              break;
+            case 'direct_leading':
+              $scope.tempDomain = 'CustDir';
+              break;
+            default:
+            }
         }
       }
     };
@@ -135,4 +226,103 @@
       }
     };
   });
+
+  /**
+  * Checklist-model
+  * AngularJS directive for list of checkboxes
+  */
+
+  app.directive('checklistModel', ['$parse', '$compile', function($parse, $compile) {
+    // contains
+    function contains(arr, item) {
+      if (angular.isArray(arr)) {
+        for (var i = 0; i < arr.length; i++) {
+          if (angular.equals(arr[i], item)) {
+            return true;
+          }
+        }
+      }
+      return false;
+    }
+
+    // add
+    function add(arr, item) {
+      arr = angular.isArray(arr) ? arr : [];
+      for (var i = 0; i < arr.length; i++) {
+        if (angular.equals(arr[i], item)) {
+          return arr;
+        }
+      }
+      arr.push(item);
+      return arr;
+    }
+
+    // remove
+    function remove(arr, item) {
+      if (angular.isArray(arr)) {
+        for (var i = 0; i < arr.length; i++) {
+          if (angular.equals(arr[i], item)) {
+            arr.splice(i, 1);
+            break;
+          }
+        }
+      }
+      return arr;
+    }
+
+    // http://stackoverflow.com/a/19228302/1458162
+    function postLinkFn(scope, elem, attrs) {
+      // compile with `ng-model` pointing to `checked`
+      $compile(elem)(scope);
+
+      // getter / setter for original model
+      var getter = $parse(attrs.checklistModel);
+      var setter = getter.assign;
+
+      // value added to list
+      var value = $parse(attrs.checklistValue)(scope.$parent);
+
+      // watch UI checked change
+      scope.$watch('checked', function(newValue, oldValue) {
+        if (newValue === oldValue) {
+          return;
+        }
+        var current = getter(scope.$parent);
+        if (newValue === true) {
+          setter(scope.$parent, add(current, value));
+        } else {
+          setter(scope.$parent, remove(current, value));
+        }
+      });
+
+      // watch original model change
+      scope.$parent.$watch(attrs.checklistModel, function(newArr, oldArr) {
+        scope.checked = contains(newArr, value);
+      }, true);
+    }
+
+    return {
+      restrict: 'A',
+      priority: 1000,
+      terminal: true,
+      scope: true,
+      compile: function(tElement, tAttrs) {
+        if (tElement[0].tagName !== 'INPUT' || !tElement.attr('type', 'checkbox')) {
+          throw 'checklist-model should be applied to `input[type="checkbox"]`.';
+        }
+
+        if (!tAttrs.checklistValue) {
+          throw 'You should provide `checklist-value`.';
+        }
+
+        // exclude recursion
+        tElement.removeAttr('checklist-model');
+
+        // local scope var storing individual checkbox model
+        tElement.attr('ng-model', 'checked');
+
+        return postLinkFn;
+      }
+    };
+  }]);
 })();

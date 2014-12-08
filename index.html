@@ -36,7 +36,7 @@
 
 					<h3>
 						<label>
-							<input type='checkbox' name='showProcess' ng-model='showProcessData' ng-init='showProcessData=true'> Show Process Data
+							<input type='checkbox' name='showProcess' ng-model='showProcessData' ng-init='showProcessData=true'> Show PCN Metadata
 						</label>
 					</h3>
 
@@ -65,14 +65,14 @@
 
 								<div class="form-group">
 									<label for="inputPassword" >Name</label>
-									<input class="form-control" placeholder="Name" ng-model='domain1.title'>
+									<input class="form-control" placeholder="Name" ng-model='Customer_domain.title'>
 								</div>
 
 								<div class="form-group">
 									<label for="inputPassword" >Subtitle</label>
-									<input class="form-control" placeholder="Subtitle" ng-model='domain1.subtitle'>
+									<input class="form-control" placeholder="Subtitle" ng-model='Customer_domain.subtitle'>
 								</div>
-								<input type='hidden' ng-init='domain1.id="domain1"'>
+								<input type='hidden' ng-init='Customer_domain.id="Customer_domain"'>
 
 						</div>
 						<div>
@@ -80,14 +80,14 @@
 
 								<div class="form-group">
 									<label for="inputPassword" >Name</label>
-									<input class="form-control" placeholder="Name" ng-model='domain2.title'>
+									<input class="form-control" placeholder="Name" ng-model='Provider_domain.title'>
 								</div>
 
 								<div class="form-group">
 									<label for="inputPassword">Subtitle</label>
-									<input class="form-control" placeholder="Subtitle" ng-model='domain2.subtitle'>
+									<input class="form-control" placeholder="Subtitle" ng-model='Provider_domain.subtitle'>
 								</div>
-								<input type='hidden' ng-init='domain2.id="domain2"'>
+								<input type='hidden' ng-init='Provider_domain.id="Provider_domain"'>
 
 
 						</div>
@@ -110,10 +110,10 @@
 							{{singleStep.title}}
 						</div>
 						<fieldset class='problemValue genericStepValue'>
-							{{singleStep.problems}}
+							<span ng-repeat='oneProblem in singleStep.problems'>{{oneProblem.type | firstUpperAndUlToSpace}} </span>
 						</fieldset>
 						<fieldset class='controlRegionValue genericStepValue'>
-							{{singleStep.controlRegion}}
+							Domain: {{singleStep.domain.id | firstUpperAndUlToSpace}}
 						</fieldset>
 						<fieldset class='typeValue genericStepValue'>
 							{{singleStep.type | firstUpperAndUlToSpace}}
@@ -129,14 +129,14 @@
 				</div>
 				<hr/>
 
-				<div ng-show="addStepForm.$dirty && !isAnEdit">
+				<!-- <div ng-show="addStepForm.$dirty && !isAnEdit">
 					<div class="fieldsetContainer">
 						<fieldset class='step'>
 							<div class='stepDescription'>
 								{{step.title}}
 							</div>
 							<fieldset class='problemValue genericStepValue'>
-								{{inconvenient.type}} {{inconvenient.description}} {{confusing.type}} {{confusing.description}} {{difficult.type}} {{difficult.description}} {{likelytofail.type}} {{likelytofail.description}}
+								{{tempProblems.inconvenient.selected ? "Inconvenient":""}} {{tempProblems.confusing.selected ? "Confusing":""}} {{tempProblems.difficult.selected ? "Difficult":""}} {{tempProblems.likely_to_fail.selected ? "Likely to fail":""}}
 							</fieldset>
 							<fieldset class='controlRegionValue genericStepValue'>
 								{{step.controlRegion}}
@@ -154,7 +154,7 @@
 							</div>
 						</fieldset>
 					</div>
-				</div>
+				</div> -->
 
 				<form name='addStepForm' ng-submit='addStepForm.$valid && addStep()' novalidate>
 
@@ -215,26 +215,26 @@
 							</div>
 
 							<div class="btn-group btn-group-justified" data-toggle="buttons">
-								<label class="btn btn-primary {{step.controlRegion == 'ProvInd' ? 'active' : ''}}">
-									<input type='radio' ng-model='step.controlRegion' name='stepControlRegion' value='ProvInd'>Independent
+								<label class="btn btn-primary {{tempDomain == 'ProvInd' ? 'active' : ''}}">
+									<input type='radio' ng-model='tempDomain' name='stepControlRegion' value='ProvInd'>Independent
 								</label>
-								<label class="btn btn-primary {{step.controlRegion == 'ProvSur' ? 'active' : ''}}">
-									<input type="radio" ng-model='step.controlRegion' name='stepControlRegion' value='ProvSur'>Surrogate
+								<label class="btn btn-primary {{tempDomain == 'ProvSur' ? 'active' : ''}}">
+									<input type="radio" ng-model='tempDomain' name='stepControlRegion' value='ProvSur'>Surrogate
 								</label>
-								<label class="btn btn-primary {{step.controlRegion == 'ProvDir' ? 'active' : ''}}">
-									<input type="radio" ng-model='step.controlRegion' name='stepControlRegion' value='ProvDir'>Direct
+								<label class="btn btn-primary {{tempDomain == 'ProvDir' ? 'active' : ''}}">
+									<input type="radio" ng-model='tempDomain' name='stepControlRegion' value='ProvDir'>Direct
 								</label>
-								<label class="btn btn-primary {{step.controlRegion == 'BothDir' ? 'active' : ''}}">
-									<input type="radio" ng-model='step.controlRegion' name='stepControlRegion' value='BothDir' checked>Both Direct
+								<label class="btn btn-primary {{tempDomain == 'BothDir' ? 'active' : ''}}">
+									<input type="radio" ng-model='tempDomain' name='stepControlRegion' value='BothDir'>Both Direct
 								</label>
-								<label class="btn btn-primary {{step.controlRegion == 'CustDir' ? 'active' : ''}}">
-									<input type="radio" ng-model='step.controlRegion' name='stepControlRegion' value='CustDir'>Direct
+								<label class="btn btn-primary {{tempDomain == 'CustDir' ? 'active' : ''}}">
+									<input type="radio" ng-model='tempDomain' name='stepControlRegion' value='CustDir'>Direct
 								</label>
-								<label class="btn btn-primary {{step.controlRegion == 'CustSur' ? 'active' : ''}}">
-									<input type="radio" ng-model='step.controlRegion' name='stepControlRegion' value='CustSur'>Surrogate
+								<label class="btn btn-primary {{tempDomain == 'CustSur' ? 'active' : ''}}">
+									<input type="radio" ng-model='tempDomain' name='stepControlRegion' value='CustSur'>Surrogate
 								</label>
-								<label class="btn btn-primary {{step.controlRegion == 'CustInd' ? 'active' : ''}}">
-									<input type="radio" ng-model='step.controlRegion' name='stepControlRegion' value='CustInd'>Independent
+								<label class="btn btn-primary {{tempDomain == 'CustInd' ? 'active' : ''}}">
+									<input type="radio" ng-model='tempDomain' name='stepControlRegion' value='CustInd'>Independent
 								</label>
 							</div>
 
@@ -324,9 +324,13 @@
 
 						<fieldset class='previousStepWrapper inputRegion' name='stepPreviousStepFieldset'>
 							<h4>Select Previous Step(s) or leave blank</h4>
-							<select multiple>
-								<option ng-repeat='oneStep in finalJSON.steps' value='oneStep.id'>{{oneStep.title}}</option>
-							</select>
+							<label class='input-group-addon btn btn-primary' ng-repeat='oneStep in finalJSON.steps'>
+								<input type='checkbox' checklist-model='tempPreviousSteps' checklist-value='oneStep.id' name='previousSteps' ng-model='{{oneStep[id]}}.selected'> {{oneStep.title}}
+								<!-- <input type='hidden' ng-init='tempPrevious.ids[oneStep.id].type="normal_relationship"'> -->
+							</label>
+							<!-- <select multiple ng-model='tempPredecessors'>
+								<option ng-repeat='oneStep in finalJSON.steps' value='{{oneStep.id}}'>{{oneStep.title}}</option>
+							</select> -->
 						</fieldset>
 					</div>
 					<button type="submit" ng-disabled='addStepForm.$invalid' type="button" class="btn btn-default">{{isAnEdit ? "Save Edits":"Add Step"}}</button>
