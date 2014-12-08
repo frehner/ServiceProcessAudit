@@ -36,7 +36,7 @@
 
 					<h3>
 						<label>
-							<input type='checkbox' name='showProcess' ng-model='showProcessData'> Show Process Data
+							<input type='checkbox' name='showProcess' ng-model='showProcessData' ng-init='showProcessData=true'> Show Process Data
 						</label>
 					</h3>
 
@@ -72,6 +72,7 @@
 									<label for="inputPassword" >Subtitle</label>
 									<input class="form-control" placeholder="Subtitle" ng-model='domain1.subtitle'>
 								</div>
+								<input type='hidden' ng-init='domain1.id="domain1"'>
 
 						</div>
 						<div>
@@ -86,6 +87,7 @@
 									<label for="inputPassword">Subtitle</label>
 									<input class="form-control" placeholder="Subtitle" ng-model='domain2.subtitle'>
 								</div>
+								<input type='hidden' ng-init='domain2.id="domain2"'>
 
 
 						</div>
@@ -120,7 +122,6 @@
 							{{singleStep.previousStep}}
 						</fieldset>
 
-						<!-- TODO: CUSTOMER VALUE -->
 						<div class='floatEnder'>
 						</div>
 					</fieldset>
@@ -149,9 +150,6 @@
 							<fieldset ng-show='step.emphasized'>
 								Emphasized
 							</fieldset>
-							<!--TODO: how does Select work here?-->
-
-							<!-- TODO: CUSTOMER VALUE -->
 							<div class='floatEnder'>
 							</div>
 						</fieldset>
@@ -160,15 +158,12 @@
 
 				<form name='addStepForm' ng-submit='addStepForm.$valid && addStep()' novalidate>
 
-
-
 					<div class="form-group">
 						<label>Step Name</label>
 						<input class="form-control" placeholder="Step Name" ng-model='step.title' required>
 					</div>
 
 					<div>
-
 
 						<fieldset class='stepProblemWrapper inputRegion' id='stepProblemFieldset'>
 							<h4>Potential Problems</h4>
@@ -328,21 +323,9 @@
 						</fieldset>
 
 						<fieldset class='previousStepWrapper inputRegion' name='stepPreviousStepFieldset'>
-							<h4>Select Previous Step(s)</h4>
-
-							<select id="example-getting-started" multiple="multiple">
-								<option value="">None</option>
-								<option ng-repeat='oneStep in finalJSON.steps' value='oneStep.title'>{{oneStep.title}}</option>
-							</select>
-							<script type="text/javascript">
-								$(document).ready(function() {
-									$('#example-getting-started').multiselect();
-								});
-							</script>
-
+							<h4>Select Previous Step(s) or leave blank</h4>
 							<select multiple>
-								<option value=''>None</option>
-								<option ng-repeat='oneStep in finalJSON.steps' value='oneStep.title'>{{oneStep.title}}</option>
+								<option ng-repeat='oneStep in finalJSON.steps' value='oneStep.id'>{{oneStep.title}}</option>
 							</select>
 						</fieldset>
 					</div>

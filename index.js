@@ -16,6 +16,8 @@
     $scope.isAnEdit = false;
     $scope.editedStepLocation = 0;
 
+    var stepId = 0;
+
     //adds a step then cleans the form
     $scope.addStep = function(){
       $scope.step.problems = [];
@@ -28,9 +30,10 @@
       if ($scope.isAnEdit) {
         $scope.finalJSON.steps[$scope.editedStepLocation] = $scope.step;
       } else {
+        $scope.step.id = stepId;
         $scope.finalJSON.steps.push($scope.step);
       }
-
+      stepId++;
       $scope.clearForm();
     };
 
