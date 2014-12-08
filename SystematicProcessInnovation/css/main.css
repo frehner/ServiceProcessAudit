@@ -1,0 +1,266 @@
+		
+		/* ----- GENERAL ----- */
+
+
+
+
+		body {
+			margin:0px;
+			background-color:white;
+			color: #555555;
+		    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+		    font-size: 14px;
+		    line-height: 1.42857;
+		}
+
+		.unselectable { /* http://stackoverflow.com/a/2310809/1963978 */
+		    -webkit-touch-callout: none;
+		    -webkit-user-select: none;
+		    -khtml-user-select: none;
+		    -moz-user-select: none;
+		    -ms-user-select: none;
+		    user-select: none;
+		}
+
+		input[type='button'] {
+			padding: 5px;
+			margin: 5px;
+			/*margin-right:50%;
+			margin-left:40%;*/
+		}
+
+		/*
+
+		input[type='button'] {			
+			padding:6px;
+			color: white;
+			background-image: linear-gradient(to bottom, #337ab7 0px, #2e6da4 100%);
+			border-radius: 3px 3px 3px 3px;
+			border: 1px solid lightgrey;
+			margin: 0;
+		}		
+		input[type='button']:hover {
+			background-image: linear-gradient(to bottom, #438ab7 0px, #3e7db4 100%);
+			cursor:pointer;
+		}
+		input[type='button']:active {
+			background-image: linear-gradient(to bottom, #438ab7 0px, #3e7db4 100%);
+		}				
+		input[type='button']:focus {
+			background-image: linear-gradient(to bottom, #438ab7 0px, #3e7db4 100%);
+		}	
+		*/
+
+
+
+		/* ----- PAGE ONE ----- */		
+
+
+
+
+
+
+		nav.header {
+			padding:12px;
+			padding-top: 28px;
+			background-color:#565656;
+		}
+		.selectStepsWrapper {
+			max-width: 850px;
+			padding:8px;
+			margin-bottom:26px;
+		}
+		.jsonTextWrapper {
+			/* TODO: Clean this up; */
+			max-width:850px;
+			padding:8px;
+			padding-left:14px;
+			color: white;
+			background-image: linear-gradient(to bottom, #337ab7 0px, #2e6da4 100%);
+			border-radius: 6px 6px 0px 0px;
+			border: 1px solid lightgrey;
+			margin: 0px;
+			
+		}
+
+		#jsonText {
+			width:96%;
+			height:120px;
+			margin:6px;
+		}
+		.hidden {
+			display:none;
+		}
+		.stepForm {
+			padding:8px;
+		}
+
+		.stepHeader {
+
+		}
+		.stepHeader<input {
+			float:right;
+			/*TODO*/
+		}
+		.stepHeader.selected {
+			background-image: linear-gradient(to bottom, #135a97 0px, #0e4d84 100%);
+		}
+
+
+		.stepContents {
+			display:none;
+		}
+		.processItem:hover{
+			background-color:#cc2222;
+			cursor:pointer;
+		}
+		
+		.processItem {
+			/*width:100%;*/
+			max-width:850px;
+			padding:6px;
+			padding-left:14px;
+			color: white;
+			background-image: linear-gradient(to bottom, #337ab7 0px, #2e6da4 100%);
+			border-radius: 6px 6px 6px 6px;
+			border: 1px solid lightgrey;
+			margin:0; /* TODO: Why is this needed? */
+		}
+
+
+		.stepCheckbox {
+			margin-left:20px;
+		}
+
+
+
+
+
+
+
+
+
+		.processCombo {
+			max-width:850px;
+			background-color:white;
+			border: 1px solid lightgrey;
+			/*border-top:2px solid #787878;*/
+			/*margin: 10px 3px 20px 3px;*/
+			border-radius: 4px;
+		}
+
+
+		.combination {
+			padding:12px 9px 12px 12px;
+			color: white;
+			background-image: linear-gradient(to bottom, #337ab7 0px, #2e6da4 100%);
+			border-radius: 4px 4px 0px 0px;
+		}
+
+		.comboNumber {
+			/*min-width:;*/
+			margin-right:8px;
+			float:left;
+			padding:4px;
+		}
+		.region1 {
+			margin-right: 14px;
+		}
+		.region2 {
+
+
+		}
+		.badgeWrapper {
+			border-radius:3px;
+			border: 2px solid #2a69bf;
+			float:left;
+		}
+
+
+		.regionBadge {
+			font-size:85%;
+			/*padding:4px;*/
+			background-color: #565656;
+			border-radius:0px 0px 0px 0px;
+			margin-right:3px;
+			float:left;
+			padding:6px;
+		}
+		.direct-leading {
+			/*border:2px solid #dd9900;*/
+			background-color: #dd9900;
+		}
+		.direct-sharing {
+			/*border:2px solid green;*/
+			background-color: green;
+		}
+		.independent {
+			/*border:2px solid #dd2200;*/
+			background-color: #dd2200;
+		}
+		.surrogate {
+			/*border:2px solid #2211dd;*/
+			background-color:#2211dd	;
+		}
+
+		.comboEntity {
+			font-size: 90%;
+			padding:4px;
+			float:left;
+		}
+
+
+
+		.ideaWrapper {
+			padding: 6px;
+		}
+		.ideasGoHere {
+			width:75%;
+			min-width:246px;
+			box-shadow: none;
+			height: 28px;
+			margin-top:3px;
+			background: none;
+			background-color: #f7f7ff !important;
+			border: none;
+		}
+		.ideasGoHere:focus {
+			background-color: #fff !important;
+			border: 1px solid lightgrey;
+			padding-left:2px !important;
+		}
+		input.addTextInputButton {
+			cursor: pointer;
+			color: black;
+			font-size: 110%;
+			background: none;
+			border: 1px solid #438ab7;
+			border-radius:15px;
+			text-align: center;
+			padding: 3px 6px 3px 6px;
+		}
+		input.addTextInputButton:hover {
+			/*background-color:#337ab7;*/
+			transition:all 400ms;
+			opacity: .4;
+		}
+		input.addTextInputButton:active {
+			/*background-color: #5797d7;*/
+			transition: all 200ms;
+			opacity: .7;
+		}
+		input.addTextInputButton:focus {
+			border: 1px solid #539ac7;
+			background-color: #f7f7ff;
+		}
+
+
+
+
+
+		/* ---- UTILITY ---- */
+
+		.clearBoth {
+			clear:both;
+		}
+

@@ -1,0 +1,899 @@
+<html>
+<head>
+	<script src='js/jquery-2.1.1.min.js'></script>
+  <script src='js/jsonScript.js'></script>
+	<link rel='stylesheet' href='css/main.css'/>
+</head>
+<body>
+	<!--TODO: Pull this in from elsewhere! -->
+	<!--TODO: Lint this! -->
+	<nav class='header'>
+	</nav>
+
+
+  <style>
+    .pageWrapper {
+
+    }
+      .pageSection {
+        max-width:850px;
+        color: white;
+        background-color: white;
+        border-radius: 6px 6px 0px 0px;
+        border: 1px solid lightgrey;
+        margin: 0px;
+      }
+        .sectionHeader {
+          padding:8px;
+          padding-left:14px;
+          color: white;
+          background-image: linear-gradient(to bottom, #135a97 0px, #0e4d84 100%);
+          border-radius: 6px 6px 0px 0px;
+          border: 1px solid #1e5d94;
+          margin-bottom: -3px;
+        }
+        .sectionHeader:hover {
+          cursor:pointer;
+          background-image: linear-gradient(to bottom, #236aa7 0px, #1e5d94 100%);
+          transition-all: 350ms;
+        }
+          .sectionHeaderNumber {
+            font-size: 145%;
+            float:left;
+            vertical-align: center;
+          }
+          .sectionHeadertitle {
+            font-size: 140%;
+            float:left;
+            vertical-align: center;
+          }
+        .sectionContents {
+          display:none;
+          padding: 10px 4px 36px 4px;
+        }
+        #importJson.sectionContents {
+          display:block;
+        }
+
+  </style>
+
+  <div class='pageWrapper'>
+    <section class='pageSection'>
+      <div id='section1Header' class='sectionHeader'>
+        <div class='sectionHeaderNumber'>1.
+        </div>
+        <div class='sectionHeaderTitle'>Import your JSON
+        </div>
+        <div class='clearBoth'>
+        </div>
+      </div>
+      <div id='importJSON' class='sectionContents'>
+        <textarea id='jsonText'>{
+          "metadata":
+            {
+              "title": "Pizza Parlor PCN",
+              "description": "This PCN represents the different interactions between a pizza restaurant and a customer.",
+              "author": "Morgan Young"
+            },
+
+            "domains":
+            [
+              {
+                "id": "GUID_1234",
+                "title": "Pizza Restaurant",
+                "subtitle": "Provider"
+              },
+
+              {
+                "id": "GUID_2345",
+                "title": "Customer",
+                "subtitle": "Customer"
+              }
+            ],
+
+            "steps":
+            [
+              {
+                "id": "GUID_3456",
+                "title": "travel to restaurant",
+                "type": "process",
+                "emphasized": false,
+                "value_specific": 0,
+                "value_generic": 0,
+                "predecessors": [],
+                "domain":
+                {
+                  "id": "GUID_2345",
+                  "region":
+                  {
+                    "type": "independent",
+                    "with_domain": ""
+                  }
+                },
+
+                "problems": []
+              },
+
+              {
+                "id": "GUID_4567",
+                "title": "wait to be seated",
+                "type": "wait",
+                "emphasized": false,
+                "value_specific": -1,
+                "value_generic": 0,
+                "predecessors":
+                [
+                  {
+                    "id": "GUID_3456",
+                    "type": "normal_relationship",
+                    "title": ""
+                  }
+                ],
+                "domain":
+                {
+                  "id": "GUID_2345",
+                  "region":
+                  {
+                    "type": "surrogate",
+                    "with_domain": "GUID_1234"
+                  }
+                },
+
+                "problems": []
+              },
+
+              {
+                "id": "GUID_5678",
+                "title": "seat customer",
+                "type": "process",
+                "emphasized": false,
+                "value_specific": 0,
+                "value_generic": 0,
+                "predecessors":
+                [
+                  {
+                    "id": "GUID_4567",
+                    "type": "normal_relationship",
+                    "title": ""
+                  }
+                ],
+                "domain":
+                {
+                  "id": "GUID_1234",
+                  "region":
+                  {
+                    "type": "direct_shared",
+                    "with_domain": "GUID_2345"
+                  }
+                },
+
+                "problems": []
+              },
+
+              {
+                "id": "GUID_6789",
+                "title": "review nenu",
+                "type": "process",
+                "emphasized": false,
+                "value_specific": 1,
+                "value_generic": 0,
+                "predecessors":
+                [
+                  {
+                    "id": "GUID_5678",
+                    "type": "normal_relationship",
+                    "title": ""
+                  }
+                ],
+                "domain":
+                {
+                  "id": "GUID_2345",
+                  "region":
+                  {
+                    "type": "surrogate",
+                    "with_domain": "GUID_1234"
+                  }
+                },
+
+                "problems": []
+              },
+
+              {
+                "id": "GUID_78910",
+                "title": "create order",
+                "type": "process",
+                "emphasized": false,
+                "value_specific": 1,
+                "value_generic": 0,
+                "predecessors":
+                [
+                  {
+                    "id": "GUID_6789",
+                    "type": "normal_relationship",
+                    "title": ""
+                  }
+                ],
+                "domain":
+                {
+                  "id": "GUID_2345",
+                  "region":
+                  {
+                    "type": "direct_leading",
+                    "with_domain": "GUID_1234"
+                  }
+                },
+
+                "problems": []
+              },
+
+              {
+                "id": "GUID_78911",
+                "title": "wait for pizza",
+                "type": "wait",
+                "emphasized": false,
+                "value_specific": -1,
+                "value_generic": 0,
+                "predecessors":
+                [
+                  {
+                    "id": "GUID_78910",
+                    "type": "normal_relationship",
+                    "title": ""
+                  }
+                ],
+                "domain":
+                {
+                  "id": "GUID_2345",
+                  "region":
+                  {
+                    "type": "surrogate",
+                    "with_domain": "GUID_1234"
+                  }
+                },
+
+                "problems": []
+              },
+
+              {
+                "id": "GUID_78912",
+                "title": "eat pizza",
+                "type": "process",
+                "emphasized": false,
+                "value_specific": 2,
+                "value_generic": 0,
+                "predecessors":
+                [
+                  {
+                    "id": "GUID_78911",
+                    "type": "normal_relationship",
+                    "title": ""
+                  },
+
+                  {
+                    "id": "GUID_78917",
+                    "type": "normal_relationship",
+                    "title": ""
+                  }
+                ],
+                "domain":
+                {
+                  "id": "GUID_2345",
+                  "region":
+                  {
+                    "type": "surrogate",
+                    "with_domain": "GUID_1234"
+                  }
+                },
+
+                "problems": []
+              },
+
+              {
+                "id": "GUID_78913",
+                "title": "develop recepies",
+                "type": "divergent_process",
+                "emphasized": false,
+                "value_specific": 0,
+                "value_generic": -1,
+                "predecessors": [],
+                "domain":
+                {
+                  "id": "GUID_1234",
+                  "region":
+                  {
+                    "type": "independent",
+                    "with_domain": ""
+                  }
+                },
+
+                "problems": []
+              },
+
+              {
+                "id": "GUID_78914",
+                "title": "preheat ovens",
+                "type": "process",
+                "emphasized": false,
+                "value_specific": 0,
+                "value_generic": -1,
+                "predecessors": [],
+                "domain":
+                {
+                  "id": "GUID_1234",
+                  "region":
+                  {
+                    "type": "independent",
+                    "with_domain": ""
+                  }
+                },
+
+                "problems": []
+              },
+
+              {
+                "id": "GUID_78915",
+                "title": "maintain supplies",
+                "type": "process",
+                "emphasized": false,
+                "value_specific": 0,
+                "value_generic": -2,
+                "predecessors": [],
+                "domain":
+                {
+                  "id": "GUID_1234",
+                  "region":
+                  {
+                    "type": "independent",
+                    "with_domain": ""
+                  }
+                },
+
+                "problems": []
+              },
+
+              {
+                "id": "GUID_78916",
+                "title": "assemble and cook pizza",
+                "type": "process",
+                "emphasized": false,
+                "value_specific": 0,
+                "value_generic": -1,
+                "predecessors":
+                [
+                  {
+                    "id": "GUID_78913",
+                    "type": "loose_temporal_relationship",
+                    "title": ""
+                  },
+
+                  {
+                    "id": "GUID_78914",
+                    "type": "loose_temporal_relationship",
+                    "title": ""
+                  },
+
+                  {
+                    "id": "GUID_78915",
+                    "type": "loose_temporal_relationship",
+                    "title": ""
+                  },
+
+                  {
+                    "id": "GUID_78910",
+                    "type": "normal_relationship",
+                    "title": ""
+                  }
+                ],
+                "domain":
+                {
+                  "id": "GUID_1234",
+                  "region":
+                  {
+                    "type": "surrogate",
+                    "with_domain": "GUID_2345"
+                  }
+                },
+
+                "problems": []
+              },
+
+              {
+                "id": "GUID_78917",
+                "title": "serve pizza",
+                "type": "process",
+                "emphasized": false,
+                "value_specific": 0,
+                "value_generic": 0,
+                "predecessors":
+                [
+                  {
+                    "id": "GUID_78916",
+                    "type": "normal_relationship",
+                    "title": ""
+                  }
+                ],
+                "domain":
+                {
+                  "id": "GUID_1234",
+                  "region":
+                  {
+                    "type": "direct_shared",
+                    "with_domain": "GUID_2345"
+                  }
+                },
+
+                "problems": []
+              },
+
+              {
+                "id": "GUID_78918",
+                "title": "prepare check",
+                "type": "process",
+                "emphasized": false,
+                "value_specific": 0,
+                "value_generic": 0,
+                "predecessors":
+                [
+                  {
+                    "id": "GUID_78912",
+                    "type": "normal_relationship",
+                    "title": ""
+                  }
+                ],
+                "domain":
+                {
+                  "id": "GUID_1234",
+                  "region":
+                  {
+                    "type": "surrogate",
+                    "with_domain": "GUID_2345"
+                  }
+                },
+
+                "problems": []
+              },
+
+              {
+                "id": "GUID_78919",
+                "title": "present check",
+                "type": "process",
+                "emphasized": false,
+                "value_specific": 0,
+                "value_generic": 0,
+                "predecessors":
+                [
+                  {
+                    "id": "GUID_78918",
+                    "type": "normal_relationship",
+                    "title": ""
+                  }
+                ],
+                "domain":
+                {
+                  "id": "GUID_1234",
+                  "region":
+                  {
+                    "type": "direct_shared",
+                    "with_domain": "GUID_2345"
+                  }
+                },
+
+                "problems": []
+              },
+
+              {
+                "id": "GUID_78920",
+                "title": "provide payment",
+                "type": "process",
+                "emphasized": false,
+                "value_specific": 0,
+                "value_generic": 1,
+                "predecessors":
+                [
+                  {
+                    "id": "GUID_78919",
+                    "type": "normal_relationship",
+                    "title": ""
+                  }
+                ],
+                "domain":
+                {
+                  "id": "GUID_2345",
+                  "region":
+                  {
+                    "type": "direct_leading",
+                    "with_domain": "GUID_1234"
+                  }
+                },
+
+                "problems": []
+              },
+
+              {
+                "id": "GUID_78921",
+                "title": "return home",
+                "type": "process",
+                "emphasized": false,
+                "value_specific": 0,
+                "value_generic": 0,
+                "predecessors":
+                [
+                  {
+                    "id": "GUID_78920",
+                    "type": "normal_relationship",
+                    "title": ""
+                  }
+                ],
+                "domain":
+                {
+                  "id": "GUID_2345",
+                  "region":
+                  {
+                    "type": "independent",
+                    "with_domain": ""
+                  }
+                },
+
+                "problems": []
+              },
+
+              {
+                "id": "GUID_78922",
+                "title": "eat leftovers",
+                "type": "process",
+                "emphasized": false,
+                "value_specific": 1,
+                "value_generic": 0,
+                "predecessors":
+                [
+                  {
+                    "id": "GUID_78921",
+                    "type": "loose_temporal_relationship",
+                    "title": ""
+                  }
+                ],
+                "domain":
+                {
+                  "id": "GUID_2345",
+                  "region":
+                  {
+                    "type": "independent",
+                    "with_domain": ""
+                  }
+                },
+
+                "problems": []
+              }
+            ]
+          }
+        </textarea>
+        <input type='button' id='parseJsonButton' value='Show Steps!'/>
+        <div class='clearBoth'></div>
+      </div>
+    </section>
+    
+    <section class='pageSection'>
+      <div id='section2Header' class='sectionHeader'>
+        <div class='sectionHeaderNumber'>2.
+        </div>
+        <div class='sectionHeaderTitle'>Choose Two Steps to Innovate!
+        </div>
+        <div class='clearBoth'>
+        </div>
+      </div>
+      <div class='sectionContents'>
+        <div id='stepAccordion'>
+        </div>
+        <input type='button' id='innovateButton' value='Innovate!'></input>
+      </div>
+      
+      <div class='clearBoth'></div>
+      </div>
+    </section>
+
+    <section class='pageSection'>
+      <div id='section3Header' class='sectionHeader'>
+        <div class='sectionHeaderNumber'>3.
+        </div>
+        <div class='sectionHeaderTitle'>Interpret Step Combinations
+        </div>
+        <div class='clearBoth'>
+        </div>
+      </div>
+      <div class='sectionContents'>
+        <div id='comboHitchingPost'>
+        </div>
+        <input type='button' id='exportButton' value='Export'/>
+      </div>
+      
+      <div class='clearBoth'></div>
+      </div>
+    </section>
+
+    <section class='pageSection'>
+      <div id='section4Header' class='sectionHeader'>
+        <div class='sectionHeaderNumber'>4.
+        </div>
+        <div class='sectionHeaderTitle'>Export Interpretations
+        </div>
+        <div class='clearBoth'>
+        </div>
+      </div>
+      <div class='sectionContents'>
+
+        <input type='text' class='emailText' placeHolder='Enter your email here'/>
+        <hr/>
+        <input type='button' value='Email your innovations!'/>
+        <!--<textarea id='exportText' placeholder='CSV data to export will appear here.' style='display:none'>-->
+        </textarea>
+      </div>
+      
+      <div class='clearBoth'></div>
+      </div>
+    </section>
+    
+  </div><!-- Page Wrapper -->
+
+  </body>
+ 
+
+  <script>
+
+    $(function(){
+
+      var steps;
+      var regions;
+
+
+    // TOGGLE PAGE SECTIONS
+
+    $('.sectionHeader').on('click',function(evt){
+      toggleContents(evt);
+    });
+    $('.sectionHeader>*').on('click',function(evt){
+      toggleContents(evt);
+    });
+
+    var toggleContents = function(evt) {
+      evt.stopPropagation();
+      $(evt.target).parents('.pageSection').children('.sectionContents').slideToggle();
+    }
+
+    var toggleContentsById = function(elementIdWithoutHash) {
+      $('#'+elementIdWithoutHash).parents('.pageSection').children('.sectionContents').slideToggle();   
+    }
+
+
+
+
+
+
+
+
+
+    // --------------------------------------------------------------
+    // parseJsonButton Click ---------------------
+      $('#parseJsonButton').on('click',function(evt){
+
+        toggleContents(evt); // Close section 1
+        toggleContentsById('section2Header');
+
+        // CLEAR CURRENT STEPS
+        $('#stepAccordion').children().remove(); // TODO: Add in animation
+
+        // ACQUIRE STEPS
+        var newJson = $.parseJSON($('#jsonText').val());
+        steps = newJson.steps; //pcnDiagram.steps;
+        var stepAccordion = $('#stepAccordion');
+
+        // DYNAMICALLY DEFINE STEPS
+        regions = [
+          {title:"Independent-"+newJson.domains[0].title,
+          className:"Independent",
+          tooltip:"Takes place when an entity acts independently of another entity in question."},
+          {title:"Surrogate",
+          className:"Surrogate",
+          tooltip:"Takes place when one entity acts on the information or resources of another"},
+          {title:"Direct-"+newJson.domains[0].title,
+          className:"Direct-leading",
+          tooltip:"Take place when entities interact directly on or with each other"},
+          {title:"Direct-"+newJson.domains[1].title,
+          className:"Direct-sharing",
+          tooltip:"Take place when entities interact directly on or with each other"},
+          {title:"Surrogate",
+          className:"Surrogate",
+          tooltip:"Takes place when one entity acts on the information or resources of another"},
+          {title:"Independent-"+newJson.domains[1].title,
+          className:"Independent",
+          tooltip:"Takes place when an entity acts independently of another entity in question."}
+        ]
+
+        // CONSTRUCT STEPS
+        $.each(steps,function(index,value){
+          var step = steps[index];
+          var stepHeader = $("<h3 class='processItem stepHeader unselectable' data-index='"+index+"'>"+step.title+
+            //"<input type='checkbox' name='items' class='stepCheckbox'>"+
+            "</h3>");
+          $(stepAccordion).append(stepHeader);
+          //var stepContents = $("<div class='stepContents'>"+step.type+"</div>");
+          //$(stepAccordion).append(stepContents);
+        });
+
+
+        // -----------Click Handler
+        $('.stepHeader').on('click',function(evt){
+          //alert($(evt.target).children());
+          // NOTE: Add in the following line to use toggleable content
+          //$(evt.target).next().slideToggle();
+
+          var numberOfSteps = $('.stepHeader.selected').length; // http://stackoverflow.com/a/2727318/1963978
+
+          if (numberOfSteps < 2) {
+            $(evt.target).toggleClass('selected');
+            //var thisCheckbox = $(evt.target).chidren("[type]=checkbox")[0];
+            //$(thisCheckbox).prop('checked','checked');
+          } else {
+            if ($(evt.target).hasClass('selected')) {
+              $(evt.target).removeClass('selected');
+            } else {
+              // Do nothin.
+            }
+          }
+        });
+
+      }); //End ParseJsonButtonOnClick
+
+
+
+
+
+
+
+    // -----------------------------------------------------------
+    // innovateButton Click ---------------------
+      $('#innovateButton').on('click',function(evt){
+
+        toggleContents(evt); // Close section 2
+        toggleContentsById('section3Header');
+
+        var elementsOfStepsSelected = $('.stepHeader.selected');
+        var selectedSteps = [];
+        $.each(elementsOfStepsSelected,function(index,element){
+          selectedSteps[index] = {index: $(element).attr('data-index'), step: steps[index]};
+        });
+
+        $('#comboHitchingPost').children().remove();
+
+
+
+
+
+
+        var step1 = selectedSteps[0].step;
+        var step2 = selectedSteps[1].index;
+
+        var counter = 1;
+
+        // LATER: This region could definitely be filled out into a series of functions to avoid errors.
+        $.each(regions,function(index,region){
+          $.each(regions,function(ind,reg){
+            var combo = $("<div class='processCombo'>"+
+                "<div class='combination'>"+
+                "<div class='comboNumber'>#"+counter+" </div>"+
+                  "<div class='badgeWrapper region1' title='"+region.tooltip+"'><div class='regionBadge "+region.className+"'>"+region.title+"</div><div class='comboEntity'>"+step1.title+"</div><div class='clearBoth'></div></div>"+
+                  "<div class='badgeWrapper region2' title='"+reg.tooltip+"'><div class='regionBadge "+reg.className+"'>"+reg.title+"</div><div class='comboEntity'>"+step2.title+"</div><div class='clearBoth'></div></div>"+
+                "<div class='clearBoth'>"+
+                "</div>"+
+                "</div>"+
+                "<div class='ideaWrapper'>"+
+
+                "<input type='text' class='ideasGoHere' placeholder='  Interpret this combo...'/>"+
+                "<input type='button' class='addTextInputButton unselectable' value='+'></input>"+
+              "</div>");
+
+
+            $('#comboHitchingPost').append(combo);
+            counter++;
+
+          });
+        });
+
+
+        $('.addTextInputButton').on('click',function(evt){
+          $(evt.target).before($("<input type='text' class='ideasGoHere'></textarea>"));
+        });
+
+      }); // End innovateButton Click
+
+  
+    
+    // -----------------------------------------------------------
+    // exportButton Click ---------------------
+
+      $('#exportButton').on('click',function(evt){
+
+        toggleContents(evt); // Close section 3
+        toggleContentsById('section4Header');
+
+
+        var textToExport = "";
+
+
+        // TODO: process textToExport
+        /*
+        $.each($('.processCombo'),function(comboIndex,combo){
+
+
+          textToExport += $(combo).find('.region1').val() + ",";
+          textToExport += $(combo).find('.region2').val() + ",";
+          var ideas = [];
+          var children = $(combo).find('.ideasGoHere');
+          
+
+          $.each(children,function(ideasIndex,ideaField){
+            ideas[ideasIndex] = $(ideaField).val();
+            // NOTE: could try adding '?' to have linebreak within a column
+          });
+
+          textToExport += ideas;
+
+          textToExport += ",";
+          textToExport += "`r`n"; // TODO: Make this work
+
+
+        });
+
+        */
+
+
+        // TODO: Email!
+
+        $.each($('.processCombo'),function(comboIndex,combo){
+
+
+          textToExport += $(combo).find('.region1').val() + ",";
+          textToExport += $(combo).find('.region2').val() + ",";
+          var ideas = [];
+          var children = $(combo).find('.ideasGoHere');
+          
+
+          $.each(children,function(ideasIndex,ideaField){
+            ideas[ideasIndex] = $(ideaField).val();
+            // NOTE: could try adding '?' to have linebreak within a column
+          });
+
+          textToExport += ideas;
+
+          textToExport += ",";
+          textToExport += "`r`n"; // TODO: Make this work
+
+          
+        });
+
+        
+
+
+        $('#exportText').val(textToExport);
+
+      });
+
+
+
+
+
+
+
+
+    }); // END JQUERY
+
+  </script>
+</html>
+
+
+
+
+<!--
+
+	This project probably marks my last project using jQuery. It is a beautiful tool, but doing this project after some basic Angular experience is showing me just why jQuery is on the way out and Angular (or something pretty dang similar--though I don't think anything is coming quickly enough that is light weight enough) is going to take over. The ability to ubiquitously bind one set of data to an infinite set of then interconnected items is huge, including the logic necessary to manage those bindings in smart, defensive ways (for example, what if I can only have so many checkboxes checked at once? I'm thinking of my .selected situation). After this project, I'm going to learn Angular.
+
+-->

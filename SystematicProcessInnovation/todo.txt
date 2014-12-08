@@ -1,0 +1,60 @@
+
+TODO ---------------------------
+
+
+
+
+
+export
+Add instructions
+clean up innovation section into the tabCard look (get rid of margins)
+Make the ones you don't want temporarily 'closeable'
+Beautiful round, button badges to show step numbers
+Do Documentation?
+Add in support for 1 OR 2 process steps.
+
+
+Add in instructions to know how to use site. 
+Show other aspects (importance, ease, etc.)
+Fix up surr/dir stuff to have it the way that we actually want it. Provider-centric.
+? Add the ability to read in a JSON file?
+? Add in the Linter
+
+DONE 
+Load the items from the JSON dynamically (add a button to generate the process steps)
+Get selected items (not as bad as I thought it would be)
+Make innovation steps show up correctly
+close into 3 sections
+
+
+
+
+PRESENTATION ------------------
+
+{On Desktop}
+- (?Linter integration)
+- Loads from anywhere that uses the pcnspec (Demo from Sean's)
+- Click the button to load process steps
+- Select steps
+- Click 'innovate!'
+
+{On Phone! WP?}
+- Overview
+-- Uses the 
+- Tooltips for thos ethat might not understand the process region
+
+
+
+
+
+
+OTHER -------------------------
+
+Things not finished can be added in as "points of future improvement" as areas that future teams could focus
+
+- Load via URL (instead of copying and pasting): Sean's team could likely implement this in 4 minutes. ;)
+
+
+
+Import JSON (from file/URL)
+Export to a file
