@@ -6,6 +6,11 @@ TODO ---------------------------
 
 
 export
+Figure out weird toggling (check if it's already open)
+cLEAN UP EMAIL FORMATTING (HR)
+Hide the random buttons in sectinos before filling up?
+
+
 Add instructions
 clean up innovation section into the tabCard look (get rid of margins)
 Make the ones you don't want temporarily 'closeable'

@@ -87,6 +87,7 @@
 			width:96%;
 			height:120px;
 			margin:6px;
+			border: 1px solid lightgrey;
 		}
 		.hidden {
 			display:none;
@@ -123,8 +124,7 @@
 			color: white;
 			background-image: linear-gradient(to bottom, #337ab7 0px, #2e6da4 100%);
 			border-radius: 6px 6px 6px 6px;
-			border: 1px solid lightgrey;
-			margin:0; /* TODO: Why is this needed? */
+			margin: 0px; /* TODO: Why is this needed? */
 		}
 
 
@@ -253,6 +253,21 @@
 			border: 1px solid #539ac7;
 			background-color: #f7f7ff;
 		}
+
+
+
+
+
+		#emailAddress {
+			width: 80%;
+			max-width: 450px;
+			height: 24px;
+			border: 1px solid lightgrey;
+		}
+		#emailAddressAnchor {
+			
+		}
+
 
 
 

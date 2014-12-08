@@ -1,5 +1,6 @@
 <html>
 <head>
+  <title>Process Innovation</title>
 	<script src='js/jquery-2.1.1.min.js'></script>
   <script src='js/jsonScript.js'></script>
 	<link rel='stylesheet' href='css/main.css'/>
@@ -21,7 +22,7 @@
         background-color: white;
         border-radius: 6px 6px 0px 0px;
         border: 1px solid lightgrey;
-        margin: 0px;
+        margin: 2px 0px -6px 2px;        
       }
         .sectionHeader {
           padding:8px;
@@ -49,7 +50,7 @@
           }
         .sectionContents {
           display:none;
-          padding: 10px 4px 36px 4px;
+          padding: 14px 6px 36px 6px;
         }
         #importJson.sectionContents {
           display:block;
@@ -621,9 +622,9 @@
       </div>
       <div class='sectionContents'>
 
-        <input type='text' class='emailText' placeHolder='Enter your email here'/>
+        <input type='text' id='emailAddress' placeHolder='Enter your email here'/>
         <hr/>
-        <input type='button' value='Email your innovations!'/>
+        <input type='button' id='emailButton' value='Email your innovations!'/>
         <!--<textarea id='exportText' placeholder='CSV data to export will appear here.' style='display:none'>-->
         </textarea>
       </div>
@@ -691,16 +692,16 @@
           {title:"Independent-"+newJson.domains[0].title,
           className:"Independent",
           tooltip:"Takes place when an entity acts independently of another entity in question."},
-          {title:"Surrogate",
+          {title:"Surrogate-"+newJson.domains[0].title,
           className:"Surrogate",
           tooltip:"Takes place when one entity acts on the information or resources of another"},
-          {title:"Direct-"+newJson.domains[0].title,
+          {title:"Direct-Leading",
           className:"Direct-leading",
           tooltip:"Take place when entities interact directly on or with each other"},
-          {title:"Direct-"+newJson.domains[1].title,
+          {title:"Direct-Sharing",
           className:"Direct-sharing",
           tooltip:"Take place when entities interact directly on or with each other"},
-          {title:"Surrogate",
+          {title:"Surrogate-"+newJson.domains[1].title,
           className:"Surrogate",
           tooltip:"Takes place when one entity acts on the information or resources of another"},
           {title:"Independent-"+newJson.domains[1].title,
@@ -780,8 +781,8 @@
             var combo = $("<div class='processCombo'>"+
                 "<div class='combination'>"+
                 "<div class='comboNumber'>#"+counter+" </div>"+
-                  "<div class='badgeWrapper region1' title='"+region.tooltip+"'><div class='regionBadge "+region.className+"'>"+region.title+"</div><div class='comboEntity'>"+step1.title+"</div><div class='clearBoth'></div></div>"+
-                  "<div class='badgeWrapper region2' title='"+reg.tooltip+"'><div class='regionBadge "+reg.className+"'>"+reg.title+"</div><div class='comboEntity'>"+step2.title+"</div><div class='clearBoth'></div></div>"+
+                  "<div class='badgeWrapper region1' data-region='"+region.title+"' title='"+region.tooltip+"'><div class='regionBadge "+region.className+"'>"+region.title+"</div><div class='comboEntity'>"+step1.title+"</div><div class='clearBoth'></div></div>"+
+                  "<div class='badgeWrapper region2' data-region='"+region.title+"' title='"+reg.tooltip+"'><div class='regionBadge "+reg.className+"'>"+reg.title+"</div><div class='comboEntity'>"+step2.title+"</div><div class='clearBoth'></div></div>"+
                 "<div class='clearBoth'>"+
                 "</div>"+
                 "</div>"+
@@ -816,7 +817,7 @@
         toggleContentsById('section4Header');
 
 
-        var textToExport = "";
+        //var textToExport = "";
 
 
         // TODO: process textToExport
@@ -843,7 +844,7 @@
 
         });
 
-        */
+        
 
 
         // TODO: Email!
@@ -867,7 +868,6 @@
           textToExport += ",";
           textToExport += "`r`n"; // TODO: Make this work
 
-          
         });
 
         
@@ -875,7 +875,90 @@
 
         $('#exportText').val(textToExport);
 
+
+        */
+
       });
+
+
+
+// -----------------------------------------------------------
+    // exportButton Click ---------------------
+
+      $('#emailButton').on('click',function(evt){
+
+        // References: http://msdn.microsoft.com/en-us/library/aa767737(v=vs.85).aspx
+        
+        var emailAddress = $('#emailAddress').val();
+        var subject = "Process Innovations";
+        var body = "";
+
+        var currentComboText = "";
+
+
+        $.each($('.processCombo'),function(comboIndex,combo){
+
+
+          currentComboText += $(combo).find('.region1').attr('data-region') + ", ";
+          currentComboText += $(combo).find('.region2').attr('data-region') + ": ";
+          var ideas = [];
+          var children = $(combo).find('.ideasGoHere');
+          
+
+          $.each(children,function(ideasIndex,ideaField){
+            ideas[ideasIndex] = $(ideaField).val();
+            // NOTE: could try adding '?' to have linebreak within a column
+          });
+
+          if (ideas[0] != "") {
+            body += currentComboText;
+            body += ideas;
+            body += "\n"; // TODO: Make this work
+          }
+
+          
+          currentComboText = "";
+
+        });
+
+
+
+
+
+
+
+
+
+
+
+
+
+        document.location.href = "mailto:"+emailAddress+"?subject="+subject+"&body="+encodeURI(body);
+      });
+
+
+
+
+
+
+
+
+
+
+
+
+var zoom = document.documentElement.clientWidth / window.innerWidth;
+$(window).resize(function() {
+    var zoomNew = document.documentElement.clientWidth / window.innerWidth;
+    if (zoom != zoomNew) {
+        // zoom has changed
+        // adjust your fixed element
+        zoom = zoomNew
+    }
+});
+
+
+
 
 
 
