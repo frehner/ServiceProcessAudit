@@ -26,6 +26,7 @@
       });
 
       $scope.tempProblems = angular.copy(staticProblemArray);
+      console.log($scope.step);
       $scope.finalJSON.steps.push($scope.step);
       $scope.step = {};
       $scope.addStepForm.$setPristine();
