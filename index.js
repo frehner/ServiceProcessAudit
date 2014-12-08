@@ -2,6 +2,17 @@
   var staticProblemArray = [{'name':'inconvenient', 'selected':false, 'description':''}, {'name':'confusing', 'selected':false, 'description':''}, {'name':'difficult', 'selected':false, 'description':''}, {'name':'likely_to_fail', 'selected':false, 'description':''}];
 
   var app = angular.module('processAudit', []);
+  
+  app.directive('integer', function(){
+		return {
+			require: 'ngModel',
+			link: function(scope, ele, attr, ctrl){
+				ctrl.$parsers.unshift(function(viewValue){
+					return parseInt(viewValue, 10);
+				});
+			}
+		};
+	});
 
   app.controller('StepController', function($scope){
     $scope.finalJSON = {};
@@ -30,7 +41,7 @@
       if ($scope.isAnEdit) {
         $scope.finalJSON.steps[$scope.editedStepLocation] = $scope.step;
       } else {
-        $scope.step.id = stepId;
+        $scope.step.id = stepId + "";
         $scope.finalJSON.steps.push($scope.step);
       }
       stepId++;
@@ -71,6 +82,12 @@
       $scope.step.value_specific = editedStep.value_specific;
       $scope.step.value_generic = editedStep.value_generic;
       $scope.step.emphasized = editedStep.emphasized;
+	  
+	  $scope.step.domain = {};
+	  $scope.step.domain.id = "";
+	  $scope.step.domain.region = {};
+	  $scope.step.domain.region.type = editedStep.controlRegion;
+	  $scope.step.domain.region.with_domain = "";
 
       if(editedStep.problems){
         var problemsCount = editedStep.problems.length;
