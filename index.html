@@ -264,20 +264,20 @@
 
 							<div class="btn-group btn-group-justified" data-toggle="buttons">
 								<label class="btn btn-primary {{step.value_specific == '2' ? 'active' : ''}}">
-									<input type="radio" ng-model='step.value_specific' value='2'>
+									<input type="radio" ng-model='step.value_specific' value='2' integer>
 									<span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>
 									<span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>
 								</label>
 								<label class="btn btn-primary {{step.value_specific == '1' ? 'active' : ''}}">
-									<input type="radio" ng-model='step.value_specific' value='1'>
+									<input type="radio" ng-model='step.value_specific' value='1' integer>
 									<span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>
 								</label>
 								<label class="btn btn-primary {{step.value_specific == '0' ? 'active' : ''}}">
-									<input type="radio" ng-model='step.value_specific' value='0' checked>
+									<input type="radio" ng-model='step.value_specific' value='0' checked integer>
 									<span class="glyphicon glyphicon-minus" aria-hidden="true"></span>
 								</label>
 								<label class="btn btn-primary {{step.value_specific == '-1' ? 'active' : ''}}">
-									<input type="radio" ng-model='step.value_specific' value='-1'>
+									<input type="radio" ng-model='step.value_specific' value='-1' integer>
 									<span class="glyphicon glyphicon-thumbs-down" aria-hidden="true"></span>
 								</label>
 							</div>
@@ -287,25 +287,25 @@
 							<h4>Generic Value Realization</h4>
 								<div class="btn-group btn-group-justified" data-toggle="buttons">
 								  <label class="btn btn-primary {{step.value_generic == '2' ? 'active' : ''}}">
-										<input type="radio" ng-model='step.value_generic' value='2'>
+										<input type="radio" ng-model='step.value_generic' value='2' integer>
 										<span class="glyphicon glyphicon-usd" aria-hidden="true"></span>
 										<span class="glyphicon glyphicon-usd" aria-hidden="true"></span>
 								  </label>
 								  <label class="btn btn-primary {{step.value_generic == '1' ? 'active' : ''}}">
-										<input type="radio" ng-model='step.value_generic' value='1'>
+										<input type="radio" ng-model='step.value_generic' value='1' integer>
 										<span class="glyphicon glyphicon-usd" aria-hidden="true"></span>
 								  </label>
 								  <label class="btn btn-primary {{step.value_generic == '0' ? 'active' : ''}}">
-										<input type="radio" ng-model='step.value_generic' value='0' checked>
+										<input type="radio" ng-model='step.value_generic' value='0' checked integer>
 										<span class="glyphicon glyphicon-minus" aria-hidden="true"></span>
 								  </label>
 								  <label class="btn btn-primary {{step.value_generic == '-1' ? 'active' : ''}}">
-										<input type="radio" ng-model='step.value_generic' value='-1'>
+										<input type="radio" ng-model='step.value_generic' value='-1' integer>
 										<span class="glyphicon glyphicon-minus" aria-hidden="true"></span>
 										<span class="glyphicon glyphicon-usd" aria-hidden="true"></span>
 								  </label>
 								  <label class="btn btn-primary {{step.value_generic == '-2' ? 'active' : ''}}">
-										<input type="radio" ng-model='step.value_generic' value='-2'>
+										<input type="radio" ng-model='step.value_generic' value='-2' integer>
 										<span class="glyphicon glyphicon-minus" aria-hidden="true"></span>
 										<span class="glyphicon glyphicon-usd" aria-hidden="true"></span>
 										<span class="glyphicon glyphicon-usd" aria-hidden="true"></span>
