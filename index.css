@@ -338,3 +338,11 @@ textarea.finalJson:focus {
 h1 {
 	color: white;
 }
+
+#stepProblemFieldset .input-group label {
+  min-width:125px;
+}
+
+#stepProblemFieldset .input-group {
+  margin-bottom:10px;
+}

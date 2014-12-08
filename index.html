@@ -163,44 +163,14 @@
 
 						<fieldset class='stepProblemWrapper inputRegion' id='stepProblemFieldset'>
 							<h4>Potential Problems</h4>
-								<div data-toggle="buttons">
-									<div class="input-group">
-									  <span class="input-group-addon  btn btn-primary">
-										<div type="button" style="width: 75px">Inconvenient</div>
-									  </span>
-									  <input type="text" class="form-control">
-									</div>
-									<br>
-									<div class="input-group">
-									  <span class="input-group-addon  btn btn-primary">
-										<div type="button" style="width: 75px">Confusing</div>
-									  </span>
-									  <input type="text" class="form-control">
-									</div>
-									<br>
-									<div class="input-group">
-									  <span class="input-group-addon  btn btn-primary">
-										<div type="button" style="width: 75px">Difficult</div>
-									  </span>
-									  <input type="text" class="form-control">
-									</div>
-									<br>
-									<div class="input-group">
-									  <span class="input-group-addon  btn btn-primary">
-										<div type="button" style="width: 75px">Likely to fail</div>
-									  </span>
-									  <input type="text" class="form-control">
-									</div>
+							<div data-toggle="buttons">
+								<div class="input-group" ng-repeat='oneProblem in tempProblems'>
+									<label class='input-group-addon btn btn-primary {{oneProblem.selected ? "active":""}}'>
+										<input type='checkbox' name='problecsCheckbox' value="{{oneProblem.name}}" ng-model='oneProblem.selected'> {{oneProblem.name | firstUpperAndUlToSpace}}
+									</label>
+								  <input type="text" class="form-control" ng-model='oneProblem.description'>
 								</div>
-
-
-							<span ng-repeat='oneProblem in tempProblems'>
-								<label>
-									{{oneProblem.name | firstUpperAndUlToSpace}}
-									<input type="checkbox" name="problemsCheckbox" value="{{oneProblem.name}}" ng-model='oneProblem.selected'>
-								</label>
-								<textarea ng-show='oneProblem.selected' ng-model='oneProblem.description'></textarea>
-							</span>
+							</div>
 						</fieldset>
 
 						<fieldset class='stepControlRegionWrapper inputRegion' name='stepControlRegionFieldset'>
@@ -316,8 +286,10 @@
 
 						<fieldset class='inputRegion'>
 							<h4>Emphasized</h4>
-							<input type="checkbox" name='emphasizedCheckbox' ng-model='step.emphasized'>
-							{{step.emphasized ? 'Yes':'No'}}
+							<label>
+								<input type="checkbox" name='emphasizedCheckbox' ng-model='step.emphasized'>
+								{{step.emphasized ? 'Yes':'No'}}
+							</label>
 						</fieldset>
 
 						<fieldset class='previousStepWrapper inputRegion' name='stepPreviousStepFieldset'>
