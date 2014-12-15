@@ -1,8 +1,5 @@
 		
-		/* ----- GENERAL ----- */
-
-
-
+		/* --------------- GENERAL ---------------- */
 
 		body {
 			margin:0px;
@@ -13,7 +10,7 @@
 		    line-height: 1.42857;
 		}
 
-		.unselectable { /* http://stackoverflow.com/a/2310809/1963978 */
+		.noHighlight { /* http://stackoverflow.com/a/2310809/1963978 */
 		    -webkit-touch-callout: none;
 		    -webkit-user-select: none;
 		    -khtml-user-select: none;
@@ -25,63 +22,81 @@
 		input[type='button'] {
 			padding: 5px;
 			margin: 5px;
-			/*margin-right:50%;
-			margin-left:40%;*/
 		}
 
-		/*
-
-		input[type='button'] {			
-			padding:6px;
-			color: white;
-			background-image: linear-gradient(to bottom, #337ab7 0px, #2e6da4 100%);
-			border-radius: 3px 3px 3px 3px;
-			border: 1px solid lightgrey;
-			margin: 0;
-		}		
-		input[type='button']:hover {
-			background-image: linear-gradient(to bottom, #438ab7 0px, #3e7db4 100%);
-			cursor:pointer;
+		.clearBoth {
+			clear:both;
 		}
-		input[type='button']:active {
-			background-image: linear-gradient(to bottom, #438ab7 0px, #3e7db4 100%);
-		}				
-		input[type='button']:focus {
-			background-image: linear-gradient(to bottom, #438ab7 0px, #3e7db4 100%);
-		}	
-		*/
+
+		.errorMessage {
+			color:red !important;
+			padding: 3px;
+			border-radius: 3px;
+		}
 
 
 
-		/* ----- PAGE ONE ----- */		
-
-
-
-
-
-
+		/* --------------- PAGE ELEMENTS ---------------- */
 		nav.header {
-			padding:12px;
-			padding-top: 28px;
+			padding:20px;
 			background-color:#565656;
-		}
-		.selectStepsWrapper {
-			max-width: 850px;
-			padding:8px;
-			margin-bottom:26px;
-		}
-		.jsonTextWrapper {
-			/* TODO: Clean this up; */
-			max-width:850px;
-			padding:8px;
-			padding-left:14px;
 			color: white;
-			background-image: linear-gradient(to bottom, #337ab7 0px, #2e6da4 100%);
-			border-radius: 6px 6px 0px 0px;
-			border: 1px solid lightgrey;
-			margin: 0px;
-			
+			font-size:160%;
+			font-weight: bold;
 		}
+
+		/* --------------- OVERALL STEPS ---------------- */
+
+		.pageWrapper {
+
+		    }
+		      .pageSection {
+		        max-width:850px;
+		        color: white;
+		        background-color: white;
+		        border-radius: 6px 6px 0px 0px;
+		        border: 1px solid lightgrey;
+		        margin: 2px 0px -6px 2px;        
+		      }
+		        .sectionHeader {
+		          padding:8px;
+		          padding-left:14px;
+		          color: white;
+		          background-image: linear-gradient(to bottom, #135a97 0px, #0e4d84 100%);
+		          border-radius: 6px 6px 0px 0px;
+		          border: 1px solid #1e5d94;
+		          margin-bottom: -3px;
+		        }
+		        .sectionHeader:hover {
+		          cursor:pointer;
+		          background-image: linear-gradient(to bottom, #236aa7 0px, #1e5d94 100%);
+		          transition-all: 350ms;
+		        }
+		          .sectionHeaderNumber {
+		            font-size: 145%;
+		            float:left;
+		            vertical-align: center;
+		          }
+		          .sectionHeadertitle {
+		            font-size: 140%;
+		            float:left;
+		            vertical-align: center;
+		          }
+		        .sectionContents {
+		          display:none;
+		          padding: 14px 6px 36px 6px;
+		        }
+		        #importJson.sectionContents {
+		          display:block;
+		        }
+
+
+
+		/* --------------- SPECIFIC STEPS ---------------- */
+
+
+
+		/* --------------- IMPORT JSON ---------------- */
 
 		#jsonText {
 			width:96%;
@@ -89,27 +104,16 @@
 			margin:6px;
 			border: 1px solid lightgrey;
 		}
-		.hidden {
-			display:none;
-		}
-		.stepForm {
-			padding:8px;
-		}
+
+
+
+		/* --------------- CHOOSE STEPS ---------------- */
 
 		.stepHeader {
 
 		}
-		.stepHeader<input {
-			float:right;
-			/*TODO*/
-		}
 		.stepHeader.selected {
 			background-image: linear-gradient(to bottom, #135a97 0px, #0e4d84 100%);
-		}
-
-
-		.stepContents {
-			display:none;
 		}
 		.processItem:hover{
 			background-color:#cc2222;
@@ -128,16 +132,9 @@
 		}
 
 
-		.stepCheckbox {
-			margin-left:20px;
-		}
 
 
-
-
-
-
-
+		/* --------------- INTERPRET COMBOS ---------------- */
 
 
 		.processCombo {
@@ -151,7 +148,7 @@
 
 
 		.combination {
-			padding:12px 9px 12px 12px;
+			padding: 9px 6px 3px 6px;
 			color: white;
 			background-image: linear-gradient(to bottom, #337ab7 0px, #2e6da4 100%);
 			border-radius: 4px 4px 0px 0px;
@@ -168,15 +165,14 @@
 		}
 		.region2 {
 
-
 		}
+
+
 		.badgeWrapper {
 			border-radius:3px;
 			border: 2px solid #2a69bf;
 			float:left;
 		}
-
-
 		.regionBadge {
 			font-size:85%;
 			/*padding:4px;*/
@@ -184,29 +180,50 @@
 			border-radius:0px 0px 0px 0px;
 			margin-right:3px;
 			float:left;
-			padding:6px;
+			padding:4px;
+		}
+
+		.independent-entity1 {
+			/*border:2px solid #dd2200;*/
+			background-color: #dd2200;
+		}
+		.surrogate-entity1 {
+			/*border:2px solid #2211dd;*/
+			background-color:#dd9900;
 		}
 		.direct-leading {
 			/*border:2px solid #dd9900;*/
-			background-color: #dd9900;
+			background-color: green;
 		}
 		.direct-sharing {
 			/*border:2px solid green;*/
 			background-color: green;
 		}
-		.independent {
-			/*border:2px solid #dd2200;*/
-			background-color: #dd2200;
-		}
-		.surrogate {
+		.surrogate-entity2 {
 			/*border:2px solid #2211dd;*/
-			background-color:#2211dd	;
+			background-color:#5533ff;
 		}
+		.independent-entity2 {
+			/*border:2px solid #dd2200;*/
+			background-color: purple;
+		}
+
 
 		.comboEntity {
 			font-size: 90%;
 			padding:4px;
 			float:left;
+		}
+
+		.toggleCombo {
+			color: #ccf;
+			padding: 0px 12px 4px 4px;
+			float:right;
+			font-size: 180%;
+		}
+		.toggleCombo:hover {
+			cursor:pointer;
+			color:#ff4400;
 		}
 
 
@@ -257,6 +274,7 @@
 
 
 
+		/* --------------- EXPORT INTERPRETATIONS ---------------- */
 
 		#emailAddress {
 			width: 80%;
@@ -266,16 +284,5 @@
 		}
 		#emailAddressAnchor {
 			
-		}
-
-
-
-
-
-
-		/* ---- UTILITY ---- */
-
-		.clearBoth {
-			clear:both;
 		}
 

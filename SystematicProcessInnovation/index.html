@@ -9,54 +9,8 @@
 	<!--TODO: Pull this in from elsewhere! -->
 	<!--TODO: Lint this! -->
 	<nav class='header'>
+  SYSTEMATIC PROCESS INNOVATION
 	</nav>
-
-
-  <style>
-    .pageWrapper {
-
-    }
-      .pageSection {
-        max-width:850px;
-        color: white;
-        background-color: white;
-        border-radius: 6px 6px 0px 0px;
-        border: 1px solid lightgrey;
-        margin: 2px 0px -6px 2px;        
-      }
-        .sectionHeader {
-          padding:8px;
-          padding-left:14px;
-          color: white;
-          background-image: linear-gradient(to bottom, #135a97 0px, #0e4d84 100%);
-          border-radius: 6px 6px 0px 0px;
-          border: 1px solid #1e5d94;
-          margin-bottom: -3px;
-        }
-        .sectionHeader:hover {
-          cursor:pointer;
-          background-image: linear-gradient(to bottom, #236aa7 0px, #1e5d94 100%);
-          transition-all: 350ms;
-        }
-          .sectionHeaderNumber {
-            font-size: 145%;
-            float:left;
-            vertical-align: center;
-          }
-          .sectionHeadertitle {
-            font-size: 140%;
-            float:left;
-            vertical-align: center;
-          }
-        .sectionContents {
-          display:none;
-          padding: 14px 6px 36px 6px;
-        }
-        #importJson.sectionContents {
-          display:block;
-        }
-
-  </style>
 
   <div class='pageWrapper'>
     <section class='pageSection'>
@@ -586,6 +540,8 @@
         <div id='stepAccordion'>
         </div>
         <input type='button' id='innovateButton' value='Innovate!'></input>
+        <div class='errorMessage'>asdf
+        </div>
       </div>
       
       <div class='clearBoth'></div>
@@ -642,10 +598,13 @@
 
     $(function(){
 
+    // ======================================================
+    // GLOBAL VARIABLES
+
       var steps;
       var regions;
 
-
+    // ======================================================
     // TOGGLE PAGE SECTIONS
 
     $('.sectionHeader').on('click',function(evt){
@@ -661,23 +620,23 @@
     }
 
     var toggleContentsById = function(elementIdWithoutHash) {
-      $('#'+elementIdWithoutHash).parents('.pageSection').children('.sectionContents').slideToggle();   
+      $('#'+elementIdWithoutHash).parents('.pageSection').children('.sectionContents').slideToggle();
+    }
+
+    var openContentsById = function(elementIdWithoutHash) {
+      // Only opens contents if closed (will not close opened items
+      $('#'+elementIdWithoutHash).parents('.pageSection').children('.sectionContents').slideDown();
     }
 
 
 
 
-
-
-
-
-
-    // --------------------------------------------------------------
+    // ======================================================
     // parseJsonButton Click ---------------------
       $('#parseJsonButton').on('click',function(evt){
 
         toggleContents(evt); // Close section 1
-        toggleContentsById('section2Header');
+        openContentsById('section2Header');
 
         // CLEAR CURRENT STEPS
         $('#stepAccordion').children().remove(); // TODO: Add in animation
@@ -690,34 +649,31 @@
         // DYNAMICALLY DEFINE STEPS
         regions = [
           {title:"Independent-"+newJson.domains[0].title,
-          className:"Independent",
+          className:"independent-entity1",
           tooltip:"Takes place when an entity acts independently of another entity in question."},
           {title:"Surrogate-"+newJson.domains[0].title,
-          className:"Surrogate",
+          className:"surrogate-entity1",
           tooltip:"Takes place when one entity acts on the information or resources of another"},
           {title:"Direct-Leading",
-          className:"Direct-leading",
-          tooltip:"Take place when entities interact directly on or with each other"},
+          className:"direct-leading",
+          tooltip:"Take place when entities interact directly on or with each other. Producer leading out."},
           {title:"Direct-Sharing",
-          className:"Direct-sharing",
-          tooltip:"Take place when entities interact directly on or with each other"},
+          className:"direct-sharing",
+          tooltip:"Take place when entities interact directly on or with each other. Consumer leading out."},
           {title:"Surrogate-"+newJson.domains[1].title,
-          className:"Surrogate",
+          className:"surrogate-entity2",
           tooltip:"Takes place when one entity acts on the information or resources of another"},
           {title:"Independent-"+newJson.domains[1].title,
-          className:"Independent",
+          className:"independent-entity2",
           tooltip:"Takes place when an entity acts independently of another entity in question."}
         ]
 
         // CONSTRUCT STEPS
         $.each(steps,function(index,value){
           var step = steps[index];
-          var stepHeader = $("<h3 class='processItem stepHeader unselectable' data-index='"+index+"'>"+step.title+
-            //"<input type='checkbox' name='items' class='stepCheckbox'>"+
+          var stepHeader = $("<h3 class='processItem stepHeader noHighlight' data-index='"+index+"'>"+step.title+
             "</h3>");
           $(stepAccordion).append(stepHeader);
-          //var stepContents = $("<div class='stepContents'>"+step.type+"</div>");
-          //$(stepAccordion).append(stepContents);
         });
 
 
@@ -750,28 +706,38 @@
 
 
 
-    // -----------------------------------------------------------
+    // ======================================================
     // innovateButton Click ---------------------
       $('#innovateButton').on('click',function(evt){
 
-        toggleContents(evt); // Close section 2
-        toggleContentsById('section3Header');
+        
 
-        var elementsOfStepsSelected = $('.stepHeader.selected');
+      var elementsOfStepsSelected = $('.stepHeader.selected');
+      if (elementsOfStepsSelected.length < 2) {
+          // TODO: Show error message!
+          $(evt.target).next('.errorMessage').text("Please select two items to innovate.");
+          $(evt.target).next('.errorMessage').css('background-color','#dd2200');
+          
+      } else {
+
+        $(evt.target).next('.errorMessage').css('background-color','#fff');
+                
+        toggleContents(evt); // Close section 2
+        openContentsById('section3Header');
+
+        
         var selectedSteps = [];
+
+        var counter = 0;
         $.each(elementsOfStepsSelected,function(index,element){
-          selectedSteps[index] = {index: $(element).attr('data-index'), step: steps[index]};
+          selectedSteps[counter] = {index: $(element).attr('data-index'), step: steps[$(element).attr('data-index')]};
+          counter++;
         });
 
         $('#comboHitchingPost').children().remove();
 
-
-
-
-
-
         var step1 = selectedSteps[0].step;
-        var step2 = selectedSteps[1].index;
+        var step2 = selectedSteps[1].step;
 
         var counter = 1;
 
@@ -783,13 +749,13 @@
                 "<div class='comboNumber'>#"+counter+" </div>"+
                   "<div class='badgeWrapper region1' data-region='"+region.title+"' title='"+region.tooltip+"'><div class='regionBadge "+region.className+"'>"+region.title+"</div><div class='comboEntity'>"+step1.title+"</div><div class='clearBoth'></div></div>"+
                   "<div class='badgeWrapper region2' data-region='"+region.title+"' title='"+reg.tooltip+"'><div class='regionBadge "+reg.className+"'>"+reg.title+"</div><div class='comboEntity'>"+step2.title+"</div><div class='clearBoth'></div></div>"+
+                  "<div class='toggleCombo'>-</div>"+
                 "<div class='clearBoth'>"+
                 "</div>"+
                 "</div>"+
                 "<div class='ideaWrapper'>"+
-
                 "<input type='text' class='ideasGoHere' placeholder='  Interpret this combo...'/>"+
-                "<input type='button' class='addTextInputButton unselectable' value='+'></input>"+
+                "<input type='button' class='addTextInputButton noHighlight' value='+'></input>"+
               "</div>");
 
 
@@ -801,88 +767,41 @@
 
 
         $('.addTextInputButton').on('click',function(evt){
-          $(evt.target).before($("<input type='text' class='ideasGoHere'></textarea>"));
+          var newTextInput = $("<input type='text' class='ideasGoHere'></textarea>");
+          $(evt.target).before(newTextInput);
+          $(newTextInput).focus();
+        });
+        $('.toggleCombo').on('click',function(evt){
+          // Toggle the text showing
+          if ($(evt.target).text() == "+") {
+            $(evt.target).text('-');
+          } else {
+            $(evt.target).text('+');
+          }
+          // Toggle the ideas
+          $(evt.target).parents('.processCombo').find('.ideaWrapper').slideToggle();
         });
 
-      }); // End innovateButton Click
+      } // End Else
+
+
+    }); // End innovateButton Click
 
   
     
-    // -----------------------------------------------------------
+    // ======================================================
     // exportButton Click ---------------------
 
       $('#exportButton').on('click',function(evt){
 
         toggleContents(evt); // Close section 3
-        toggleContentsById('section4Header');
-
-
-        //var textToExport = "";
-
-
-        // TODO: process textToExport
-        /*
-        $.each($('.processCombo'),function(comboIndex,combo){
-
-
-          textToExport += $(combo).find('.region1').val() + ",";
-          textToExport += $(combo).find('.region2').val() + ",";
-          var ideas = [];
-          var children = $(combo).find('.ideasGoHere');
-          
-
-          $.each(children,function(ideasIndex,ideaField){
-            ideas[ideasIndex] = $(ideaField).val();
-            // NOTE: could try adding '?' to have linebreak within a column
-          });
-
-          textToExport += ideas;
-
-          textToExport += ",";
-          textToExport += "`r`n"; // TODO: Make this work
-
-
-        });
-
-        
-
-
-        // TODO: Email!
-
-        $.each($('.processCombo'),function(comboIndex,combo){
-
-
-          textToExport += $(combo).find('.region1').val() + ",";
-          textToExport += $(combo).find('.region2').val() + ",";
-          var ideas = [];
-          var children = $(combo).find('.ideasGoHere');
-          
-
-          $.each(children,function(ideasIndex,ideaField){
-            ideas[ideasIndex] = $(ideaField).val();
-            // NOTE: could try adding '?' to have linebreak within a column
-          });
-
-          textToExport += ideas;
-
-          textToExport += ",";
-          textToExport += "`r`n"; // TODO: Make this work
-
-        });
-
-        
-
-
-        $('#exportText').val(textToExport);
-
-
-        */
+        openContentsById('section4Header');
 
       });
 
 
 
-// -----------------------------------------------------------
+    // ======================================================
     // exportButton Click ---------------------
 
       $('#emailButton').on('click',function(evt){
@@ -921,51 +840,9 @@
 
         });
 
-
-
-
-
-
-
-
-
-
-
-
-
         document.location.href = "mailto:"+emailAddress+"?subject="+subject+"&body="+encodeURI(body);
+
       });
-
-
-
-
-
-
-
-
-
-
-
-
-var zoom = document.documentElement.clientWidth / window.innerWidth;
-$(window).resize(function() {
-    var zoomNew = document.documentElement.clientWidth / window.innerWidth;
-    if (zoom != zoomNew) {
-        // zoom has changed
-        // adjust your fixed element
-        zoom = zoomNew
-    }
-});
-
-
-
-
-
-
-
-
-
-
 
     }); // END JQUERY
 

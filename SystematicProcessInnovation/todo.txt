@@ -1,65 +1,28 @@
 
-TODO ---------------------------
 
+FIXED:
+- Make process combo names show up correctly
+- Figure out weird toggling (check if it's already open)
+- Clean up CSS
+- Change unselectable name to -- noHighlight
+- Make sure that region names are normal
+- If you add a new interpretation, move focus to that step
+- Force selecting two items to trigger innovate
+- When hitting innovation steps, make sure that you move focus to the next button/field
 
-
-
-
-export
-Figure out weird toggling (check if it's already open)
-cLEAN UP EMAIL FORMATTING (HR)
-Hide the random buttons in sectinos before filling up?
-
-
-Add instructions
-clean up innovation section into the tabCard look (get rid of margins)
-Make the ones you don't want temporarily 'closeable'
-Beautiful round, button badges to show step numbers
-Do Documentation?
-Add in support for 1 OR 2 process steps.
-
-
-Add in instructions to know how to use site. 
-Show other aspects (importance, ease, etc.)
-Fix up surr/dir stuff to have it the way that we actually want it. Provider-centric.
-? Add the ability to read in a JSON file?
-? Add in the Linter
-
-DONE 
-Load the items from the JSON dynamically (add a button to generate the process steps)
-Get selected items (not as bad as I thought it would be)
-Make innovation steps show up correctly
-close into 3 sections
-
-
-
-
-PRESENTATION ------------------
-
-{On Desktop}
-- (?Linter integration)
-- Loads from anywhere that uses the pcnspec (Demo from Sean's)
-- Click the button to load process steps
-- Select steps
-- Click 'innovate!'
-
-{On Phone! WP?}
-- Overview
--- Uses the 
-- Tooltips for thos ethat might not understand the process region
-
-
-
-
-
-
-OTHER -------------------------
-
-Things not finished can be added in as "points of future improvement" as areas that future teams could focus
-
-- Load via URL (instead of copying and pasting): Sean's team could likely implement this in 4 minutes. ;)
-
-
-
+-------------------------------------------------------
+AREAS FOR FUTURE EXPANSION:
+More Mobile friendly
 Import JSON (from file/URL)
-Export to a file
+Export to a *file*
+Test for PCN spec full compliance
+Tooltips on touch (not just hover)
+Richer display of process data (problems, etc.), particularly in the way that regions are handled (direct *with*, consider removing direct-sharing/leading, etc.)
+Make it possible to innovate on a single process step (non-dual)
+Add in account integration / save innovations, etc.
+Make it possible to select steps to innovate via checkbox (currently only possible with touch/mouse)
+Hide the random buttons in each section before it's ready to be used?
+More appropriately scroll when hitting a stepEnding button (scroll to the top of the next area, not middle or bottom)
+Make the combos you don't want to explore temporarily 'closeable' -- start witht hem all closed by default and expand the ones you want?
+Beautiful round, button badges to show step numbers
+Add in instructions to know how to use site. 
