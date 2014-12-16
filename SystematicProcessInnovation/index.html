@@ -2,22 +2,21 @@
 <head>
   <title>Process Innovation</title>
 	<script src='js/jquery-2.1.1.min.js'></script>
-  <script src='js/jsonScript.js'></script>
 	<link rel='stylesheet' href='css/main.css'/>
 </head>
 <body>
 	<!--TODO: Pull this in from elsewhere! -->
 	<!--TODO: Lint this! -->
-	<nav class='header'>
+	<nav class='header noHighlight'>
   SYSTEMATIC PROCESS INNOVATION
 	</nav>
 
   <div class='pageWrapper'>
     <section class='pageSection'>
       <div id='section1Header' class='sectionHeader'>
-        <div class='sectionHeaderNumber'>1.
+        <div class='sectionHeaderNumber noHighlight'>1.
         </div>
-        <div class='sectionHeaderTitle'>Import your JSON
+        <div class='sectionHeaderTitle noHighlight'>Import your JSON
         </div>
         <div class='clearBoth'>
         </div>
@@ -127,7 +126,7 @@
 
               {
                 "id": "GUID_6789",
-                "title": "review nenu",
+                "title": "review menu",
                 "type": "process",
                 "emphasized": false,
                 "value_specific": 1,
@@ -529,9 +528,9 @@
     
     <section class='pageSection'>
       <div id='section2Header' class='sectionHeader'>
-        <div class='sectionHeaderNumber'>2.
+        <div class='sectionHeaderNumber noHighlight'>2.
         </div>
-        <div class='sectionHeaderTitle'>Choose Two Steps to Innovate!
+        <div class='sectionHeaderTitle noHighlight'>Choose Two Steps to Innovate!
         </div>
         <div class='clearBoth'>
         </div>
@@ -550,9 +549,9 @@
 
     <section class='pageSection'>
       <div id='section3Header' class='sectionHeader'>
-        <div class='sectionHeaderNumber'>3.
+        <div class='sectionHeaderNumber noHighlight'>3.
         </div>
-        <div class='sectionHeaderTitle'>Interpret Step Combinations
+        <div class='sectionHeaderTitle noHighlight'>Interpret Step Combinations
         </div>
         <div class='clearBoth'>
         </div>
@@ -569,9 +568,9 @@
 
     <section class='pageSection'>
       <div id='section4Header' class='sectionHeader'>
-        <div class='sectionHeaderNumber'>4.
+        <div class='sectionHeaderNumber noHighlight'>4.
         </div>
-        <div class='sectionHeaderTitle'>Export Interpretations
+        <div class='sectionHeaderTitle noHighlight'>Export Interpretations
         </div>
         <div class='clearBoth'>
         </div>
@@ -747,9 +746,13 @@
             var combo = $("<div class='processCombo'>"+
                 "<div class='combination'>"+
                 "<div class='comboNumber'>#"+counter+" </div>"+
+
                   "<div class='badgeWrapper region1' data-region='"+region.title+"' title='"+region.tooltip+"'><div class='regionBadge "+region.className+"'>"+region.title+"</div><div class='comboEntity'>"+step1.title+"</div><div class='clearBoth'></div></div>"+
-                  "<div class='badgeWrapper region2' data-region='"+region.title+"' title='"+reg.tooltip+"'><div class='regionBadge "+reg.className+"'>"+reg.title+"</div><div class='comboEntity'>"+step2.title+"</div><div class='clearBoth'></div></div>"+
-                  "<div class='toggleCombo'>-</div>"+
+
+                  "<div class='badgeWrapper region2' data-region='"+reg.title+"' title='"+reg.tooltip+"'><div class='regionBadge "+reg.className+"'>"+reg.title+"</div><div class='comboEntity'>"+step2.title+"</div><div class='clearBoth'></div></div>"+
+
+                  "<div class='toggleCombo noHighlight'>-</div>"+
+
                 "<div class='clearBoth'>"+
                 "</div>"+
                 "</div>"+
@@ -807,36 +810,57 @@
       $('#emailButton').on('click',function(evt){
 
         // References: http://msdn.microsoft.com/en-us/library/aa767737(v=vs.85).aspx
+
+        // LATER: Only create email address if you enter an email address? I could see this actually being bad sometimes if you don't know the email of the person you don't want to send it to.
+        
+        // LATER: Assess: should we actually send an email with all possible combinations, blank or not, so that it acts as a canvas for further interpretation outside the environment of the application?
         
         var emailAddress = $('#emailAddress').val();
         var subject = "Process Innovations";
-        var body = "";
-
-        var currentComboText = "";
+        var body = "Possible Interpretations:\n\n";
 
 
         $.each($('.processCombo'),function(comboIndex,combo){
 
+          var currentComboText = "";
 
+          currentComboText += $(combo).find('.comboNumber').text() + ": ";
           currentComboText += $(combo).find('.region1').attr('data-region') + ", ";
           currentComboText += $(combo).find('.region2').attr('data-region') + ": ";
           var ideas = [];
           var children = $(combo).find('.ideasGoHere');
           
 
-          $.each(children,function(ideasIndex,ideaField){
-            ideas[ideasIndex] = $(ideaField).val();
+          $.each(children,function(ideaIndex,ideaField){
+            ideas[ideaIndex] = $(ideaField).val();
             // NOTE: could try adding '?' to have linebreak within a column
           });
 
-          if (ideas[0] != "") {
-            body += currentComboText;
-            body += ideas;
-            body += "\n"; // TODO: Make this work
-          }
+          // Appropriately handle blanks
+          var testString = "";
+          $.each(ideas,function(ideaIndex,ideaValue){
+            testString += ideaValue;
+          });
 
-          
-          currentComboText = "";
+          if (testString != "") {
+            // Add in combo title for non-blank ideas
+            body += currentComboText;
+
+            // Add in all non-blank ideas
+            $.each(ideas,function(ideaIndex,ideaValue){
+              if (ideaValue !="") {
+                body += "[" + ideaValue + "] ";
+              } else {
+                // Blank -- Do Nothing
+              }
+            });
+
+            body += "\n"; // TODO: Make this work
+          } else {
+            // Do Nothing
+            console.log("nothing");
+
+          }
 
         });
 

@@ -25,4 +25,5 @@ Hide the random buttons in each section before it's ready to be used?
 More appropriately scroll when hitting a stepEnding button (scroll to the top of the next area, not middle or bottom)
 Make the combos you don't want to explore temporarily 'closeable' -- start witht hem all closed by default and expand the ones you want?
 Beautiful round, button badges to show step numbers
-Add in instructions to know how to use site. 
+Add in instructions to know how to use site.
+Hit enter in email field and send email
