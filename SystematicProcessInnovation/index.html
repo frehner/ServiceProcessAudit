@@ -522,6 +522,8 @@
           }
         </textarea>
         <input type='button' id='parseJsonButton' value='Show Steps!'/>
+        <div class='errorMessage'>
+        </div>
         <div class='clearBoth'></div>
       </div>
     </section>
@@ -539,7 +541,7 @@
         <div id='stepAccordion'>
         </div>
         <input type='button' id='innovateButton' value='Innovate!'></input>
-        <div class='errorMessage'>asdf
+        <div class='errorMessage'>
         </div>
       </div>
       
@@ -634,74 +636,89 @@
     // parseJsonButton Click ---------------------
       $('#parseJsonButton').on('click',function(evt){
 
-        toggleContents(evt); // Close section 1
-        openContentsById('section2Header');
+        
 
         // CLEAR CURRENT STEPS
         $('#stepAccordion').children().remove(); // TODO: Add in animation
 
-        // ACQUIRE STEPS
-        var newJson = $.parseJSON($('#jsonText').val());
-        steps = newJson.steps; //pcnDiagram.steps;
-        var stepAccordion = $('#stepAccordion');
+        var newJson = "";
 
-        // DYNAMICALLY DEFINE STEPS
-        regions = [
-          {title:"Independent-"+newJson.domains[0].title,
-          className:"independent-entity1",
-          tooltip:"Takes place when an entity acts independently of another entity in question."},
-          {title:"Surrogate-"+newJson.domains[0].title,
-          className:"surrogate-entity1",
-          tooltip:"Takes place when one entity acts on the information or resources of another"},
-          {title:"Direct-Leading",
-          className:"direct-leading",
-          tooltip:"Take place when entities interact directly on or with each other. Producer leading out."},
-          {title:"Direct-Sharing",
-          className:"direct-sharing",
-          tooltip:"Take place when entities interact directly on or with each other. Consumer leading out."},
-          {title:"Surrogate-"+newJson.domains[1].title,
-          className:"surrogate-entity2",
-          tooltip:"Takes place when one entity acts on the information or resources of another"},
-          {title:"Independent-"+newJson.domains[1].title,
-          className:"independent-entity2",
-          tooltip:"Takes place when an entity acts independently of another entity in question."}
-        ]
+        try {
 
-        // CONSTRUCT STEPS
-        $.each(steps,function(index,value){
-          var step = steps[index];
-          var stepHeader = $("<h3 class='processItem stepHeader noHighlight' data-index='"+index+"'>"+step.title+
-            "</h3>");
-          $(stepAccordion).append(stepHeader);
-        });
+          // TRY ACQUIRING STEPS
+          newJson = $.parseJSON($('#jsonText').val());
+
+          // Clear Previous Error messages
+          $(evt.target).next('.errorMessage').css('background-color','#fff');
+          $(evt.target).next('.errorMessage').text("");
+
+          // Close Sections
+          toggleContents(evt); // Close section 1
+          openContentsById('section2Header');
+
+          steps = newJson.steps; //pcnDiagram.steps;
+          var stepAccordion = $('#stepAccordion');
+
+          // DYNAMICALLY DEFINE STEPS
+          regions = [
+            {title:"Independent-"+newJson.domains[0].title,
+            className:"independent-entity1",
+            tooltip:"Takes place when an entity acts independently of another entity in question."},
+            {title:"Surrogate-"+newJson.domains[0].title,
+            className:"surrogate-entity1",
+            tooltip:"Takes place when one entity acts on the information or resources of another"},
+            {title:"Direct-Leading",
+            className:"direct-leading",
+            tooltip:"Take place when entities interact directly on or with each other. Producer leading out."},
+            {title:"Direct-Sharing",
+            className:"direct-sharing",
+            tooltip:"Take place when entities interact directly on or with each other. Consumer leading out."},
+            {title:"Surrogate-"+newJson.domains[1].title,
+            className:"surrogate-entity2",
+            tooltip:"Takes place when one entity acts on the information or resources of another"},
+            {title:"Independent-"+newJson.domains[1].title,
+            className:"independent-entity2",
+            tooltip:"Takes place when an entity acts independently of another entity in question."}
+          ]
+
+          // CONSTRUCT STEPS
+          $.each(steps,function(index,value){
+            var step = steps[index];
+            var stepHeader = $("<h3 class='processItem stepHeader noHighlight' data-index='"+index+"'>"+step.title+
+              "</h3>");
+            $(stepAccordion).append(stepHeader);
+          });
 
 
-        // -----------Click Handler
-        $('.stepHeader').on('click',function(evt){
-          //alert($(evt.target).children());
-          // NOTE: Add in the following line to use toggleable content
-          //$(evt.target).next().slideToggle();
+          // -----------Click Handler
+          $('.stepHeader').on('click',function(evt){
+            //alert($(evt.target).children());
+            // NOTE: Add in the following line to use toggleable content
+            //$(evt.target).next().slideToggle();
 
-          var numberOfSteps = $('.stepHeader.selected').length; // http://stackoverflow.com/a/2727318/1963978
+            var numberOfSteps = $('.stepHeader.selected').length; // http://stackoverflow.com/a/2727318/1963978
 
-          if (numberOfSteps < 2) {
-            $(evt.target).toggleClass('selected');
-            //var thisCheckbox = $(evt.target).chidren("[type]=checkbox")[0];
-            //$(thisCheckbox).prop('checked','checked');
-          } else {
-            if ($(evt.target).hasClass('selected')) {
-              $(evt.target).removeClass('selected');
+            if (numberOfSteps < 2) {
+              $(evt.target).toggleClass('selected');
+              //var thisCheckbox = $(evt.target).chidren("[type]=checkbox")[0];
+              //$(thisCheckbox).prop('checked','checked');
             } else {
-              // Do nothin.
+              if ($(evt.target).hasClass('selected')) {
+                $(evt.target).removeClass('selected');
+              } else {
+                // Do nothin.
+              }
             }
-          }
-        });
+          });
+
+        } catch(error) {
+
+          console.log(error);
+          $(evt.target).next('.errorMessage').text("Unfortunately, your JSON is formatted incorrectly..... :(");
+          $(evt.target).next('.errorMessage').css('background-color','#dd2200');
+        }
 
       }); //End ParseJsonButtonOnClick
-
-
-
-
 
 
 
@@ -720,6 +737,7 @@
       } else {
 
         $(evt.target).next('.errorMessage').css('background-color','#fff');
+        $(evt.target).next('.errorMessage').text("");
                 
         toggleContents(evt); // Close section 2
         openContentsById('section3Header');
@@ -812,7 +830,7 @@
         // References: http://msdn.microsoft.com/en-us/library/aa767737(v=vs.85).aspx
 
         // LATER: Only create email address if you enter an email address? I could see this actually being bad sometimes if you don't know the email of the person you don't want to send it to.
-        
+
         // LATER: Assess: should we actually send an email with all possible combinations, blank or not, so that it acts as a canvas for further interpretation outside the environment of the application?
         
         var emailAddress = $('#emailAddress').val();
@@ -858,13 +876,12 @@
             body += "\n"; // TODO: Make this work
           } else {
             // Do Nothing
-            console.log("nothing");
 
           }
 
         });
 
-        document.location.href = "mailto:"+emailAddress+"?subject="+subject+"&body="+encodeURI(body);
+        document.location.href = "mailto:"+emailAddress+"?subject="+subject+"&body="+encodeURIComponent(body)+"rru=compose";
 
       });
 

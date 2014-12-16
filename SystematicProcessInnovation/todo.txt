@@ -10,8 +10,14 @@ FIXED:
 - Force selecting two items to trigger innovate
 - When hitting innovation steps, make sure that you move focus to the next button/field
 
+- Fixed issue with email body not loading correctly in some browsers! (Switched from encodeURI(body) to encodeURIComponent(body))
+- Handle instance of .parseJSON failing
+
 -------------------------------------------------------
 AREAS FOR FUTURE EXPANSION:
+
+Move to another stack. This one is working fine for what we want it to do, but it will greatly limit further expansion.
+
 More Mobile friendly
 Import JSON (from file/URL)
 Export to a *file*
