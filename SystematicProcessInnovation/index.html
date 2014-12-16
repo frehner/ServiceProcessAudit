@@ -714,7 +714,7 @@
         } catch(error) {
 
           console.log(error);
-          $(evt.target).next('.errorMessage').text("Unfortunately, your JSON is formatted incorrectly..... :(");
+          $(evt.target).next('.errorMessage').text("Unfortunately, something's wrong with your JSON... :(");
           $(evt.target).next('.errorMessage').css('background-color','#dd2200');
         }
 
@@ -881,7 +881,7 @@
 
         });
 
-        document.location.href = "mailto:"+emailAddress+"?subject="+subject+"&body="+encodeURIComponent(body)+"rru=compose";
+        document.location.href = "mailto:"+emailAddress+"?subject="+subject+"&body="+encodeURIComponent(body)+"&rru=compose&to:"+emailAddress; // The last two are just in case--I've run across things online that make it look like these might be necessary for hotmail. // http://www.bing.com/search?q=what+does+rru%3Dcompose+mean%3F&src=IE-TopResult&FORM=IETR02&conversationid=
 
       });
 
